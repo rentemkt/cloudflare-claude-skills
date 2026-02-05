@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço Consciência - Clínica de Psicoterapia</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-white shadow-sm border-b border-border sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex-shrink-0">
+                <h1 class="text-2xl font-bold text-primary">
+                    Espaço Consciência
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="text-foreground hover:text-primary transition-colors duration-200">
+                    Início
+                </a>
+                <a href="#sobre" class="text-foreground hover:text-primary transition-colors duration-200">
+                    Sobre
+                </a>
+                <a href="#metodo" class="text-foreground hover:text-primary transition-colors duration-200">
+                    Método
+                </a>
+                <a href="#equipe" class="text-foreground hover:text-primary transition-colors duration-200">
+                    Equipe
+                </a>
+                <a href="#contato" class="text-foreground hover:text-primary transition-colors duration-200">
+                    Contato
+                </a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex items-center text-sm text-muted-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-4 w-4 mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +351 935 522 267
+                </div>
+                <button class="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Marcar Consulta
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+    <main>
+        <section id="hero" class="relative bg-gradient-to-br from-blue-50 to-green-50 py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+                        Clínica de Psicoterapia
+                    </h1>
+                    <h2 class="text-2xl lg:text-3xl font-semibold text-primary leading-tight">
+                        Chegou a Sua Vez de Se Sentir Bem Consigo!
+                    </h2>
+                    <p class="text-xl text-muted-foreground leading-relaxed">
+                        A verdadeira transformação acontece quando <strong>ELIMINA</strong> aquilo que 
+                        está entre si e a vida de bem-estar que <strong>PODE</strong> ter.
+                    </p>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-border">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe h-5 w-5 text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        <span class="font-semibold text-foreground">Consultas Disponíveis</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 text-secondary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span class="text-sm font-medium text-foreground">Porto</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 text-secondary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span class="text-sm font-medium text-foreground">Barcelos</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video h-4 w-4 text-accent"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                            <span class="text-sm font-medium text-foreground">Online Global</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-primary/10 rounded-xl p-6 border border-primary/20">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe h-5 w-5 text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        <span class="font-semibold text-primary">Consultas Online Multilíngues</span>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        Sessões online com o nosso Método Consciência, para que obtenha os resultados que anseia, 
+                        <strong> em qualquer parte do mundo</strong>.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Português</span>
+                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">English</span>
+                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Español</span>
+                        <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full">Français</span>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video mr-2 h-5 w-5"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                        Consulta Online
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </button>
+                    <button class="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin mr-2 h-5 w-5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Consulta Presencial
+                    </button>
+                </div>
+                <div class="flex items-center space-x-8 pt-8 border-t border-border">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">16+</div>
+                        <div class="text-sm text-muted-foreground">Anos de Experiência</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">2.800+</div>
+                        <div class="text-sm text-muted-foreground">Pessoas Ajudadas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary">22.000+</div>
+                        <div class="text-sm text-muted-foreground">Horas de Terapia</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img
+                        src="./assets/hero-therapy-room.jpg"
+                        alt="Ambiente terapêutico acolhedor e profissional"
+                        class="w-full h-[600px] object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-border">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe h-6 w-6 text-primary-foreground"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-foreground">Acesso Global</div>
+                            <div class="text-sm text-muted-foreground">Consultas online em vários idiomas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="method" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
+                Modelo Psicoterapêutico
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Método Consciência
+            </h2>
+            <div class="max-w-4xl mx-auto space-y-4 text-lg text-muted-foreground">
+                <p>
+                    O seu sofrimento e dificuldades de hoje têm sempre uma causa, uma raiz… uma <strong class="text-foreground">ORIGEM</strong>.
+                </p>
+                <p>
+                    Por isso, a situação em que se encontra hoje não o define. Logo, tratando as causas do problema, 
+                    ele desaparece e você adquire o controlo sobre a sua vida.
+                </p>
+                <p>
+                    Exclusivo da nossa clínica, o nosso Método Consciência foca-se em encontrar e tratar 
+                    <strong class="text-foreground"> A ORIGEM</strong> dos seus sintomas e dificuldades.
+                </p>
+                <p>
+                    Tratar A ORIGEM é a única forma eficaz de eliminar o seu sofrimento, medos, bloqueios e inseguranças. 
+                    Este Método baseia-se na aplicação, de forma única, de quatro psicoterapias: Hipnose Clínica, 
+                    Terapia Mente-Corpo, Eye Movement Desensitization and Reprocessing (EMDR) e Neurobiologia Interpessoal.
+                </p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain h-6 w-6 text-primary"><path d="M12 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/><path d="M12 18a3 3 1 0 0 0 0-6 3 3 0 0 0 0 6Z"/><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 21v-2a4 4 0 0 1-4-4H6"/><path d="M12 21v-2a4 4 0 0 0 4-4h2"/><path d="M12 3v2a4 4 0 0 0 4 4h2"/><path d="M12 3v2a4 4 0 0 1-4 4H6"/><path d="M3 12a9 9 0 0 0 18 0"/></svg>
+                        </div>
+                        <h3 class="text-xl text-foreground">Hipnose Clínica</h3>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed">
+                        Utiliza-se o poder do seu subconsciente para que se liberte de experiências do seu passado, e para que a sua mente aprenda a alcançar o que deseja.
+                    </p>
+                </div>
+            </div>
+            <div class="border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart h-6 w-6 text-primary"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                        </div>
+                        <h3 class="text-xl text-foreground">Terapia Mente-Corpo</h3>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed">
+                        Utiliza-se a ligação que existe entre o seu corpo e a sua mente, para que obtenha poder sobre as suas emoções e alcance bem-estar emocional e físico.
+                    </p>
+                </div>
+            </div>
+            <div class="border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye h-6 w-6 text-primary"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <h3 class="text-xl text-foreground">Eye Movement Desensitization and Reprocessing</h3>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed">
+                        Utiliza-se a capacidade inata do seu cérebro para se curar e se libertar das emoções, pensamentos e padrões negativos, que advêm das suas experiências de vida.
+                    </p>
+                </div>
+            </div>
+            <div class="border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-6 w-6 text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87C18.5 11.5 20 8.3 20 7c0-4-3-5-8-5s-8 1-8 5c0 1.3 1.5 4.5 3 5.13C3 15.2 2 17 2 19v2"/><circle cx="15" cy="7" r="4"/></svg>
+                        </div>
+                        <h3 class="text-xl text-foreground">Neurobiologia Interpessoal</h3>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed">
+                        Utiliza-se o conhecimento da neurociência e da ciência das relações humanas, para que transforme pensamentos, emoções e relações negativas em positivas.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center space-y-6">
+            <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Todas elas têm resultados científicos comprovados de mudança positiva, e mesmo de cura.
+            </p>
+            <p class="text-lg text-muted-foreground max-w-4xl mx-auto">
+                Fazemos tudo para que, quando terminar o processo de psicoterapia com o nosso Método, 
+                se sinta confiante e capaz de viver a vida com tranquilidade, bem-estar e alegria.
+            </p>
+            <button class="bg-primary hover:bg-primary/90 text-primary-foreground">
+                Saber Mais Sobre o Método
+            </button>
+        </div>
+    </div>
+</section>
+        <section id="testimonials" class="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
+                Testemunhos
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                O Que Dizem as Pessoas Que Confiam em Nós
+            </h2>
+            <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Histórias reais de resultados transformadores
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "Era descrente em psicoterapia. Só vim à primeira consulta porque me marcaram, por sentir que já não havia mais nada a perder, e para deixar de ser acusado de que estava assim porque queria. Felizmente estava enganado. Não era verdade que estava naquele estado porque queria, mas havia motivos. Descobri com este processo que havia também soluções para os meus problemas. Foi uma transformação sentida e vivida. Hoje estou grato por esse caminho e por mim. Obrigado por tudo."
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                Carlos, 57 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "Como mães queremos o melhor para os nossos filhos. Quando pedi ajuda para a Ana, estava mesmo angustiada. Via a minha filha a sofrer com ansiedade e baixa-autoestima, e eu impotente. Nada do que fazia ajudava. Foi muito duro. Não sei o que fizeram dentro do consultório, mas foi magia. A Ana voltou a ser a pessoa alegre e feliz que era em criança. Mil vezes Obrigada."
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                Mãe da Ana, 16 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "Impressionante como tudo passou a fazer sentido. Custou-me no início fazer este investimento, de tempo e dinheiro. Como a doutora me disse, o investimento não era na terapia, era em mim, e percebi que investir em mim era o mais difícil. Recordo-me bem da frase que me disse: 'Se não investe em si, como quer que a vida e os outros invistam em si?'. A partir desse momento decidi, a medo, tentar. Não sabia o que fazer, mas como me disse: 'Só tem que aparecer, o resto fazemos em conjunto.' Houve lágrimas, risos, abraços, mas mais importante, houve mudanças em mim. Agora sinto que eu sou a prioridade na minha vida."
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                Fátima, 36 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "Nem acredito que estou aqui a escrever este testemunho, pois o inalcançável foi alcançado. Estou bem. Sei que aqui me disseram que era possível, mas após anos de angústia e medos não acreditava. No entanto, nunca desisti! Sei que parece pouco estar bem, mas após tanto sofrimento poder dizer que ESTOU BEM é tudo. Muito obrigada!"
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                Sara, 42 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "O Henrique agora está mais seguro e confiante, e sei reconhecer que é o resultado direto do trabalho que fizeram. Eu própria sinto-me mais confiante para o orientar e apoiar. Vim buscar ajuda para ele mas, no fim, toda a família beneficiou deste processo. Obrigada pela sua ajuda."
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                Mãe do Henrique, 12 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white border-border hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote h-5 w-5 text-primary"><path d="M3 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2c1 0 1 1 1 2v3c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2Z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-muted-foreground leading-relaxed mb-4">
+                                "Andava perdido. A doutora sabe que eu estava perdido. Com o trabalho que fizemos aqui, eu mudei. Compreendi o que estava a fazer mal, o que me libertei-me disso. Eu sei que me diz que o que alcancei aqui é uma conquista minha, mas a verdade é que, sem si, não teria conseguido. Ainda bem que a encontrei."
+                            </blockquote>
+                            <cite class="text-sm font-semibold text-foreground not-italic">
+                                André, 24 anos
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
+                Consultas
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Marque uma Consulta<br />
+                <span class="text-primary">PRESENCIAL ou ONLINE</span>
+            </h2>
+            <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <strong>Estamos aqui para si, à distância de um clique!</strong><br />
+                Beneficie da flexibilidade, comodidade e conforto das consultas online.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <div class="border-border hover:shadow-lg transition-all duration-300 ring-2 ring-primary/20 bg-primary/5">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-primary text-primary-foreground">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video h-6 w-6"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-foreground">Consultas Online Multilíngues</h3>
+                            <div class="text-xs font-semibold text-primary uppercase tracking-wide">
+                                Recomendado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed mb-4">
+                        Sessões online com o nosso Método Consciência, para que obtenha os resultados que anseia, em qualquer parte do mundo.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Português</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">English</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Español</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Français</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-border hover:shadow-lg transition-all duration-300 bg-white">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-primary/10 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-6 w-6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-foreground">Consultas Presenciais - Porto</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed mb-4">
+                        Atendimento presencial no nosso consultório no Porto, num ambiente acolhedor e profissional.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Ambiente privado</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Equipamento especializado</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Fácil acesso</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-border hover:shadow-lg transition-all duration-300 bg-white">
+                <div class="p-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-primary/10 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-6 w-6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-foreground">Consultas Presenciais - Barcelos</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-muted-foreground leading-relaxed mb-4">
+                        Atendimento presencial no nosso consultório em Barcelos, próximo e conveniente.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Localização central</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Estacionamento</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span class="text-sm text-muted-foreground">Ambiente tranquilo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe h-8 w-8 text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Acesso Global</h3>
+                <p class="text-muted-foreground text-sm">Consultas online disponíveis em qualquer lugar do mundo</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-8 w-8 text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Flexibilidade de Horários</h3>
+                <p class="text-muted-foreground text-sm">Seg - Sex: 10:00 - 19:00, adaptado às suas necessidades</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-8 w-8 text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87C18.5 11.5 20 8.3 20 7c0-4-3-5-8-5s-8 1-8 5c0 1.3 1.5 4.5 3 5.13C3 15.2 2 17 2 19v2"/><circle cx="15" cy="7" r="4"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Equipa Especializada</h3>
+                <p class="text-muted-foreground text-sm">Psicólogos dedicados e experientes com 16+ anos de prática</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield h-8 w-8 text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Confidencialidade Total</h3>
+                <p class="text-muted-foreground text-sm">Ambiente seguro e privado para o seu processo terapêutico</p>
+            </div>
+        </div>
+        <div class="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-foreground mb-4">
+                Pronto para Começar a Sua Transformação?
+            </h3>
+            <p class="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Aqui não precisa de ficar com receio de reconhecer o que está a vivenciar. 
+                Respondeu SIM a alguma das perguntas? Então chegou ao Sítio Certo!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video mr-2 h-5 w-5"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                    Marcar Consulta Online
+                </button>
+                <button class="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin mr-2 h-5 w-5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Marcar Consulta Presencial
+                </button>
+            </div>
+            <p class="text-sm text-muted-foreground mt-4">
+                Telefone: <a href="tel:+351935522267" class="text-primary hover:underline">+351 935 522 267</a>
+            </p>
+        </div>
+    </div>
+</section>
+        <section id="team" class="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="relative rounded-2xl overflow-hidden shadow-xl">
+                    <img
+                        src="./assets/calm-therapy-space.jpg"
+                        alt="Consultório profissional do Espaço Consciência"
+                        class="w-full h-[500px] object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-lg border border-border">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award h-5 w-5 text-primary-foreground"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-foreground text-sm">16+ Anos</div>
+                            <div class="text-xs text-muted-foreground">Experiência</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-border">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-5 w-5 text-secondary-foreground"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87C18.5 11.5 20 8.3 20 7c0-4-3-5-8-5s-8 1-8 5c0 1.3 1.5 4.5 3 5.13C3 15.2 2 17 2 19v2"/><circle cx="15" cy="7" r="4"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-foreground text-sm">2.800+</div>
+                            <div class="text-xs text-muted-foreground">Pessoas Ajudadas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div>
+                    <div class="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
+                        Sobre
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                        Somos uma Equipa de Psicólogos Comprometidos com a Sua Melhoria
+                    </h2>
+                </div>
+                <div class="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                    <p>
+                        Aqui, no Espaço Consciência, tem ao seu dispor uma equipa de psicólogos 
+                        dedicados e experientes, que genuinamente se importam consigo.
+                    </p>
+                    <p>
+                        Apreciamo-lo e respeitamo-lo pelo <strong class="text-foreground">SER único que é</strong>.
+                        Comprometemo-nos em nos dedicarmos a si com total empenho, e sempre orientados 
+                        para que alcance a transformação que procura na sua vida.
+                    </p>
+                    <p>
+                        Cada intervenção que realizamos é especializada, personalizada e adaptada a si, 
+                        de forma a obter resultados positivos concretos.
+                    </p>
+                    <p>
+                        Focamo-nos para que aqui, no Espaço Consciência, encontre o que procura: 
+                        um psicólogo clínico especialista em psicoterapia e genuinamente humano, 
+                        que tenha como missão alcançar consigo o melhor para si.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="border-border bg-white/80 backdrop-blur-sm">
+                        <div class="p-6 text-center">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart h-6 w-6 text-primary"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-foreground mb-2">Genuinamente Humano</h3>
+                            <p class="text-sm text-muted-foreground">Cuidado personalizado e empático</p>
+                        </div>
+                    </div>
+                    <div class="border-border bg-white/80 backdrop-blur-sm">
+                        <div class="p-6 text-center">
+                            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award h-6 w-6 text-secondary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-foreground mb-2">Especializado</h3>
+                            <p class="text-sm text-muted-foreground">Método Consciência exclusivo</p>
+                        </div>
+                    </div>
+                    <div class="border-border bg-white/80 backdrop-blur-sm">
+                        <div class="p-6 text-center">
+                            <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-6 w-6 text-accent"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87C18.5 11.5 20 8.3 20 7c0-4-3-5-8-5s-8 1-8 5c0 1.3 1.5 4.5 3 5.13C3 15.2 2 17 2 19v2"/><circle cx="15" cy="7" r="4"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-foreground mb-2">Comprometido</h3>
+                            <p class="text-sm text-muted-foreground">Dedicação total ao seu bem-estar</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Saber Mais Sobre a Nossa Equipa
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="text-sm font-semibold text-primary uppercase tracking-wide mb-4">
+                Contato
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Pronto Para Começar Sua Transformação?
+            </h2>
+            <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Entre em contato conosco hoje mesmo e dê o primeiro passo em direção a uma vida mais plena e equilibrada.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-8 w-8 text-primary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Telefone</h3>
+                <p class="text-muted-foreground text-sm">+351 935 522 267</p>
+                <p class="text-muted-foreground text-xs">Disponível para chamadas e WhatsApp</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-8 w-8 text-primary"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Email</h3>
+                <p class="text-muted-foreground text-sm">contato@espacoconsciencia.pt</p>
+                <p class="text-muted-foreground text-xs">Resposta em até 24 horas</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-8 w-8 text-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Localização</h3>
+                <p class="text-muted-foreground text-sm">Porto, Portugal</p>
+                <p class="text-muted-foreground text-xs">Consultas presenciais e online</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-8 w-8 text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Horários</h3>
+                <p class="text-muted-foreground text-sm">Segunda a Sexta: 10:00 - 19:00</p>
+                <p class="text-muted-foreground text-xs">Horários flexíveis disponíveis</p>
+            </div>
+        </div>
+        <div class="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-foreground mb-4">
+                Entre em Contato
+            </h3>
+            <p class="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Preencha o formulário abaixo e entraremos em contato em breve para agendar sua consulta.
+            </p>
+            <form class="max-w-md mx-auto space-y-4">
+                <input type="text" placeholder="Nome completo" class="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <input type="tel" placeholder="Telefone" class="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <textarea placeholder="Mensagem" rows="4" class="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-semibold">
+                    Enviar Mensagem
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+    </main>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Espaço Consciência</h3>
+                    <p class="text-gray-300 mb-4">
+                        Clínica de Psicoterapia especializada no Método Consciência, 
+                        dedicada à sua transformação e bem-estar.
+                    </p>
+                    <p class="text-gray-300">
+                        Consultas presenciais em Porto e Barcelos, 
+                        e online em vários idiomas.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>📞 +351 935 522 267</p>
+                        <p>✉️ contato@espacoconsciencia.pt</p>
+                        <p>📍 Porto e Barcelos, Portugal</p>
+                        <p>🕒 Seg - Sex: 10:00 - 19:00</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Serviços</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>• Consultas Online Multilíngues</p>
+                        <p>• Consultas Presenciais</p>
+                        <p>• Método Consciência</p>
+                        <p>• Hipnose Clínica</p>
+                        <p>• Terapia Mente-Corpo</p>
+                        <p>• EMDR</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Espaço Consciência. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço Consciência - Clínica de Psicoterapia</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#059669', 
+                        accent: '#f59e0b',
+                        warm: '#fef7ed'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Animações customizadas */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #2563eb;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/navegacao-mobile-optimized.css">
+<link rel="stylesheet" href="css/navegacao-aprimorada.css">
+</head>
+<body>
+<div data-include="header"></div>
+ class="font-sans bg-warm text-gray-900 leading-relaxed">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-effect border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                        <!-- Ícone de consciência/lotus -->
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold gradient-text">Espaço Consciência</h1>
+                </div>
+                
+                <!-- Navegação Desktop -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-primary transition-colors font-medium">Início</a>
+                    <a href="#sobre" class="text-gray-700 hover:text-primary transition-colors font-medium">Sobre</a>
+                    <a href="#metodo" class="text-gray-700 hover:text-primary transition-colors font-medium">Método</a>
+                    <a href="#equipe" class="text-gray-700 hover:text-primary transition-colors font-medium">Equipe</a>
+                    <a href="#contato" class="text-gray-700 hover:text-primary transition-colors font-medium">Contato</a>
+                </nav>
+                
+                <!-- Telefone e CTA -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden lg:flex items-center text-sm text-gray-600">
+                        <!-- Ícone de telefone -->
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        +351 935 522 267
+                    </div>
+                    <a class="bg-gradient-to-r from-primary to-secondary hover:shadow-lg text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105" href="./contactos/index.html">Marcar Consulta</a>
+                </div>
+
+                <!-- Menu Mobile (botão) -->
+                <button class="lg:hidden p-2" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div class="lg:hidden hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#inicio" class="block text-gray-700 hover:text-primary font-medium">Início</a>
+                <a href="#sobre" class="block text-gray-700 hover:text-primary font-medium">Sobre</a>
+                <a href="#metodo" class="block text-gray-700 hover:text-primary font-medium">Método</a>
+                <a href="#equipe" class="block text-gray-700 hover:text-primary font-medium">Equipe</a>
+                <a href="#contato" class="block text-gray-700 hover:text-primary font-medium">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #2563eb 1px, transparent 0); background-size: 20px 20px;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Conteúdo Textual -->
+            <div class="space-y-8 fade-in">
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-200 shadow-lg">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-700">Consultas Online Disponíveis</span>
+                </div>
+                
+                <!-- Títulos -->
+                <div class="space-y-4">
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
+                        <span class="gradient-text">Clínica de</span><br>
+                        <span class="text-gray-800">Psicoterapia</span>
+                    </h1>
+                    
+                    <h2 class="text-xl md:text-2xl lg:text-4xl font-serif text-secondary font-semibold">
+                        Chegou a Sua Vez de Se Sentir Bem Consigo!
+                    </h2>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl">
+                        A verdadeira transformação acontece quando <strong class="text-primary">ELIMINA</strong> aquilo que 
+                        está entre si e a vida de bem-estar que <strong class="text-primary">PODE</strong> ter.
+                    </p>
+                </div>
+
+                <!-- Card de Consultas -->
+                <div class="bg-white/90 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-white/50 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                            <!-- Ícone de mundo -->
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Consultas Disponíveis</h3>
+                    </div>
+                    
+                    <!-- Localização das consultas -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6">
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100">
+                            <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <!-- Ícone de localização -->
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-800 text-sm">Porto</div>
+                                <div class="text-xs text-gray-600">Presencial</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100">
+                            <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <!-- Ícone de localização -->
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-800 text-sm">Barcelos</div>
+                                <div class="text-xs text-gray-600">Presencial</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100">
+                            <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <!-- Ícone de vídeo -->
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-800 text-sm">Online</div>
+                                <div class="text-xs text-gray-600">Global</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Idiomas -->
+                    <div class="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <!-- Ícone de idiomas -->
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                            </svg>
+                            <span class="font-semibold text-primary">Consultas Multilíngues</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full font-medium">Português</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full font-medium">English</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full font-medium">Español</span>
+                            <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full font-medium">Français</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de CTA -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="group bg-gradient-to-r from-primary to-secondary hover:shadow-2xl text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                        <!-- Ícone de vídeo -->
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        Consulta Online
+                        <!-- Seta -->
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <button class="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center">
+                        <!-- Ícone de localização -->
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Consulta Presencial
+                    </button>
+                </div>
+
+                <!-- Estatísticas -->
+                <div class="flex items-center justify-between pt-8 border-t border-gray-200">
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold gradient-text">16+</div>
+                        <div class="text-sm text-gray-600">Anos de Experiência</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold gradient-text">2.800+</div>
+                        <div class="text-sm text-gray-600">Pessoas Ajudadas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-3xl font-bold gradient-text">22.000+</div>
+                        <div class="text-sm text-gray-600">Horas de Terapia</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imagem Hero -->
+            <div class="relative fade-in">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl animate-float">
+                    <!-- Placeholder para imagem do consultório -->
+                    <div class="w-full h-[500px] md:h-[600px] bg-gradient-to-br from-blue-100 via-white to-green-100 flex items-center justify-center">
+                        <div class="text-center text-gray-400">
+                            <!-- Ícone placeholder -->
+                            <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <p class="text-lg">Ambiente terapêutico acolhedor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cards Flutuantes -->
+                <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-white/95 backdrop-blur-lg p-4 md:p-6 rounded-2xl shadow-xl border border-white/50">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de mundo -->
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-800 text-sm md:text-base">Acesso Global</div>
+                            <div class="text-xs md:text-sm text-gray-600">Consultas online multilíngues</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white/95 backdrop-blur-lg p-4 md:p-6 rounded-2xl shadow-xl border border-white/50">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de segurança -->
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-800 text-sm md:text-base">100% Confidencial</div>
+                            <div class="text-xs md:text-sm text-gray-600">Ambiente seguro e privado</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipe/Sobre -->
+    <section id="sobre" class="py-16 md:py-20 bg-gradient-to-br from-warm to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                <!-- Imagem/Visual -->
+                <div class="relative fade-in">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <!-- Placeholder para imagem da equipe/consultório -->
+                        <div class="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-green-100/50 via-white to-orange-100/50 flex items-center justify-center">
+                            <div class="text-center text-gray-400">
+                                <!-- Ícone placeholder -->
+                                <svg class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 md:mb-6 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <p class="text-lg md:text-xl">Consultório profissional e acolhedor</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cards Flutuantes de Conquistas -->
+                    <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-white/95 backdrop-blur-lg p-4 md:p-6 rounded-2xl shadow-xl border border-white/50">
+                        <div class="flex items-center space-x-3 md:space-x-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <!-- Ícone de prêmio -->
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800 text-sm md:text-base">16+ Anos</div>
+                                <div class="text-xs md:text-sm text-gray-600">Experiência</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white/95 backdrop-blur-lg p-4 md:p-6 rounded-2xl shadow-xl border border-white/50">
+                        <div class="flex items-center space-x-3 md:space-x-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <!-- Ícone de pessoas -->
+                                <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800 text-sm md:text-base">2.800+</div>
+                                <div class="text-xs md:text-sm text-gray-600">Pessoas Ajudadas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conteúdo Textual -->
+                <div class="space-y-6 md:space-y-8 fade-in">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-secondary/10 rounded-full px-6 py-2 mb-6">
+                            <!-- Ícone de pessoa -->
+                            <svg class="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Sobre</span>
+                        </div>
+                        
+                        <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+                            Somos uma <span class="gradient-text">Equipa</span><br>
+                            <span class="text-gray-800">de Psicólogos Comprometidos</span><br>
+                            <span class="text-secondary font-serif">com a Sua Melhoria</span>
+                        </h2>
+                    </div>
+
+                    <div class="space-y-4 md:space-y-6 text-base md:text-lg text-gray-600 leading-relaxed">
+                        <p>
+                            Aqui, no Espaço Consciência, tem ao seu dispor uma equipa de psicólogos 
+                            dedicados e experientes, que genuinamente se importam consigo.
+                        </p>
+                        <p>
+                            Apreciamo-lo e respeitamo-lo pelo <strong class="text-primary">SER único que é</strong>.
+                            Comprometemo-nos em nos dedicarmos a si com total empenho, e sempre orientados 
+                            para que alcance a transformação que procura na sua vida.
+                        </p>
+                        <p>
+                            Cada intervenção que realizamos é especializada, personalizada e adaptada a si, 
+                            de forma a obter resultados positivos concretos.
+                        </p>
+                        <p>
+                            Focamo-nos para que aqui, no Espaço Consciência, encontre o que procura: 
+                            um psicólogo clínico especialista em psicoterapia e genuinamente humano, 
+                            que tenha como missão alcançar consigo o melhor para si.
+                        </p>
+                    </div>
+
+                    <!-- Características da Equipa -->
+                    <div class="grid sm:grid-cols-3 gap-4 md:gap-6">
+                        <div class="group hover-lift bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl p-4 md:p-6 text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-red-400/20 to-pink-400/20 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                                <!-- Ícone de coração -->
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-sm md:text-base">Genuinamente Humano</h3>
+                            <p class="text-xs md:text-sm text-gray-600">Cuidado personalizado e empático</p>
+                        </div>
+
+                        <div class="group hover-lift bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl p-4 md:p-6 text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-amber-400/20 to-yellow-400/20 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                                <!-- Ícone de certificado -->
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-sm md:text-base">Especializado</h3>
+                            <p class="text-xs md:text-sm text-gray-600">Método Consciência exclusivo</p>
+                        </div>
+
+                        <div class="group hover-lift bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl p-4 md:p-6 text-center">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                                <!-- Ícone de energia/raio -->
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-gray-800 mb-2 text-sm md:text-base">Comprometido</h3>
+                            <p class="text-xs md:text-sm text-gray-600">Dedicação total ao seu bem-estar</p>
+                        </div>
+                    </div>
+
+                    <button class="bg-gradient-to-r from-secondary to-primary hover:shadow-2xl text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105">
+                        Saber Mais Sobre a Nossa Equipa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 md:mb-20 fade-in">
+                <div class="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-6 py-2 mb-6">
+                    <!-- Ícone de email -->
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span class="text-sm font-semibold text-primary uppercase tracking-wider">Contato</span>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+                    Pronto Para Começar<br>
+                    <span class="gradient-text">Sua Transformação?</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                    Entre em contato conosco hoje mesmo e dê o primeiro passo em direção a uma vida mais plena e equilibrada.
+                </p>
+            </div>
+
+            <!-- Informações de Contato -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16">
+                <!-- Telefone -->
+                <div class="group hover-lift text-center bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <!-- Ícone de telefone -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3">Telefone</h3>
+                    <p class="text-gray-700 font-semibold mb-1 text-sm md:text-base">+351 935 522 267</p>
+                    <p class="text-xs md:text-sm text-gray-600">Disponível para chamadas e WhatsApp</p>
+                </div>
+
+                <!-- Email -->
+                <div class="group hover-lift text-center bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <!-- Ícone de email -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3">Email</h3>
+                    <p class="text-gray-700 font-semibold mb-1 text-sm md:text-base">contato@espacoconsciencia.pt</p>
+                    <p class="text-xs md:text-sm text-gray-600">Resposta em até 24 horas</p>
+                </div>
+
+                <!-- Localização -->
+                <div class="group hover-lift text-center bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <!-- Ícone de localização -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3">Localização</h3>
+                    <p class="text-gray-700 font-semibold mb-1 text-sm md:text-base">Porto & Barcelos</p>
+                    <p class="text-xs md:text-sm text-gray-600">Consultas presenciais e online</p>
+                </div>
+
+                <!-- Horários -->
+                <div class="group hover-lift text-center bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <!-- Ícone de relógio -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3">Horários</h3>
+                    <p class="text-gray-700 font-semibold mb-1 text-sm md:text-base">Seg - Sex: 10:00 - 19:00</p>
+                    <p class="text-xs md:text-sm text-gray-600">Horários flexíveis disponíveis</p>
+                </div>
+            </div>
+
+            <!-- Formulário de Contato -->
+            <div class="bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-3xl p-8 md:p-12 fade-in">
+                <div class="text-center mb-8 md:mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                        Entre em Contato
+                    </h3>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                        Preencha o formulário abaixo e entraremos em contato em breve para agendar sua consulta.
+                    </p>
+                </div>
+                
+                <form class="max-w-2xl mx-auto" id="contact-form">
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nome completo</label>
+                            <input type="text" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4 md:mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Telefone</label>
+                        <input type="tel" name="telefone" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="+351 000 000 000">
+                    </div>
+                    
+                    <div class="mb-6 md:mb-8">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Mensagem</label>
+                        <textarea name="mensagem" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none" placeholder="Conte-nos um pouco sobre como podemos ajudá-lo..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="group bg-gradient-to-r from-primary to-secondary hover:shadow-2xl text-white px-10 md:px-12 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg transition-all duration-300 hover:scale-105 inline-flex items-center" id="submit-btn">
+                            <!-- Ícone de envio -->
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            </svg>
+                            <span id="btn-text">Enviar Mensagem</span>
+                            <!-- Seta -->
+                            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <p class="text-xs md:text-sm text-gray-500 mt-4">
+                            Respeitamos a sua privacidade. Todas as informações são tratadas de forma confidencial.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
+                <!-- Logo e Descrição -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4 md:mb-6">
+                        <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone do logo -->
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold">Espaço Consciência</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 md:mb-6 max-w-md text-sm md:text-base">
+                        Clínica de Psicoterapia especializada no Método Consciência, 
+                        dedicada à sua transformação e bem-estar.
+                    </p>
+                    <p class="text-gray-400 text-xs md:text-sm">
+                        Consultas presenciais em Porto e Barcelos, 
+                        e online em vários idiomas para qualquer parte do mundo.
+                    </p>
+                </div>
+
+                <!-- Contato -->
+                <div>
+                    <h4 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Contato</h4>
+                    <div class="space-y-3 md:space-y-4 text-gray-300">
+                        <div class="flex items-center space-x-3">
+                            <!-- Ícone de telefone -->
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span class="text-sm md:text-base">+351 935 522 267</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <!-- Ícone de email -->
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="text-sm md:text-base">contato@espacoconsciencia.pt</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <!-- Ícone de localização -->
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span class="text-sm md:text-base">Porto e Barcelos, Portugal</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <!-- Ícone de relógio -->
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-sm md:text-base">Seg - Sex: 10:00 - 19:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviços -->
+                <div>
+                    <h4 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Serviços</h4>
+                    <div class="space-y-2 md:space-y-3 text-gray-300">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Consultas Online Multilíngues</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Consultas Presenciais</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Método Consciência</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Hipnose Clínica</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Terapia Mente-Corpo</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">EMDR</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-1 h-1 bg-secondary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm">Neurobiologia Interpessoal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separador e Copyright -->
+            <div class="border-t border-gray-700 pt-6 md:pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-xs md:text-sm mb-4 md:mb-0">
+                        &copy; 2024 Espaço Consciência. Todos os direitos reservados.
+                    </p>
+                    <div class="flex items-center space-x-4 md:space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">
+                            Política de Privacidade
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">
+                            Termos de Uso
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Inicialização quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+        });
+
+        function initializeWebsite() {
+            // Smooth scrolling para navegação
+            initSmoothScrolling();
+            
+            // Menu mobile
+            initMobileMenu();
+            
+            // Animações de scroll
+            initScrollAnimations();
+            
+            // Header transparente
+            initHeaderScroll();
+            
+            // Formulário de contato
+            initContactForm();
+        }
+
+        // Smooth scrolling para links de navegação
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Fechar menu mobile se estiver aberto
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Menu mobile
+        function initMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // Animações de fade-in ao scroll
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Header que muda com o scroll
+        function initHeaderScroll() {
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.classList.remove('glass-effect');
+                    header.classList.add('bg-white/95');
+                } else {
+                    header.classList.add('glass-effect');
+                    header.classList.remove('bg-white/95');
+                }
+            });
+        }
+
+        // Formulário de contato
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            
+            if (contactForm && submitBtn && btnText) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Desabilitar botão
+                    submitBtn.disabled = true;
+                    btnText.innerHTML = `
+                        <div class="spinner mr-2"></div>
+                        Enviando...
+                    `;
+                    
+                    // Simular envio
+                    setTimeout(() => {
+                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                        contactForm.reset();
+                        submitBtn.disabled = false;
+                        btnText.textContent = 'Enviar Mensagem';
+                    }, 2000);
+                });
+            }
+        }
+
+        // Adicionar listener para redimensionamento da tela
+        window.addEventListener('resize', function() {
+            // Fechar menu mobile ao redimensionar
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && window.innerWidth >= 1024) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+<div data-include="footer"></div>
+<script src="js/includes-loader.js"></script>
+<script src="js/sistema-busca-inteligente.js"></script>
+<script src="js/navegacao-inteligente.js"></script>
+</body>
+</html>
+
+    <!-- Método Consciência -->
+    <section id="metodo" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 md:mb-20 fade-in">
+                <div class="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-6 py-2 mb-6">
+                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                    <span class="text-sm font-semibold text-primary uppercase tracking-wider">Modelo Psicoterapêutico</span>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-8">
+                    <span class="gradient-text">Método</span> <span class="text-gray-800">Consciência</span>
+                </h2>
+                
+                <div class="max-w-5xl mx-auto space-y-4 md:space-y-6 text-base md:text-lg text-gray-600 leading-relaxed">
+                    <p class="text-xl md:text-2xl font-serif text-secondary">
+                        O seu sofrimento e dificuldades de hoje têm sempre uma causa, uma raiz... uma <strong class="gradient-text">ORIGEM</strong>.
+                    </p>
+                    <p>
+                        Por isso, a situação em que se encontra hoje não o define. Logo, tratando as causas do problema, 
+                        ele desaparece e você adquire o controlo sobre a sua vida.
+                    </p>
+                    <p>
+                        Exclusivo da nossa clínica, o nosso Método Consciência foca-se em encontrar e tratar 
+                        <strong class="gradient-text"> A ORIGEM</strong> dos seus sintomas e dificuldades.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cards dos Métodos -->
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+                <!-- Hipnose Clínica -->
+                <div class="group hover-lift bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de mente/cérebro -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Hipnose Clínica</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Utiliza-se o poder do seu subconsciente para que se liberte de experiências do seu passado, 
+                        e para que a sua mente aprenda a alcançar o que deseja.
+                    </p>
+                </div>
+
+                <!-- Terapia Mente-Corpo -->
+                <div class="group hover-lift bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de coração -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Terapia Mente-Corpo</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Utiliza-se a ligação que existe entre o seu corpo e a sua mente, para que obtenha poder sobre 
+                        as suas emoções e alcance bem-estar emocional e físico.
+                    </p>
+                </div>
+
+                <!-- EMDR -->
+                <div class="group hover-lift bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de olho -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">EMDR</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Utiliza-se a capacidade inata do seu cérebro para se curar e se libertar das emoções, 
+                        pensamentos e padrões negativos, que advêm das suas experiências de vida.
+                    </p>
+                </div>
+
+                <!-- Neurobiologia Interpessoal -->
+                <div class="group hover-lift bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-2xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de pessoas/neurociência -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Neurobiologia Interpessoal</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Utiliza-se o conhecimento da neurociência e da ciência das relações humanas, para que transforme 
+                        pensamentos, emoções e relações negativas em positivas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA do Método -->
+            <div class="text-center space-y-6 md:space-y-8 fade-in">
+                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                    Todas elas têm resultados científicos comprovados de mudança positiva, e mesmo de cura.
+                </p>
+                <p class="text-lg md:text-xl text-gray-600 max-w-5xl mx-auto">
+                    Fazemos tudo para que, quando terminar o processo de psicoterapia com o nosso Método, 
+                    se sinta confiante e capaz de viver a vida com tranquilidade, bem-estar e alegria.
+                </p>
+                <button class="bg-gradient-to-r from-primary to-secondary hover:shadow-2xl text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105">
+                    Saber Mais Sobre o Método
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testemunhos -->
+    <section id="testemunhos" class="py-16 md:py-20 bg-gradient-to-br from-warm to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 md:mb-20 fade-in">
+                <div class="inline-flex items-center space-x-2 bg-secondary/10 rounded-full px-6 py-2 mb-6">
+                    <!-- Ícone de aspas -->
+                    <svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                    </svg>
+                    <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Testemunhos</span>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+                    O Que Dizem as <span class="gradient-text">Pessoas</span><br>
+                    <span class="text-gray-800">Que Confiam em Nós</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Histórias reais de resultados transformadores
+                </p>
+            </div>
+
+            <!-- Grid de Testemunhos -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Testemunho 1 - Carlos -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de aspas -->
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "Era descrente em psicoterapia. Só vim à primeira consulta porque me marcaram, por sentir que já não havia mais nada a perder. Felizmente estava enganado. Descobri com este processo que havia também soluções para os meus problemas. Foi uma transformação sentida e vivida."
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">Carlos, 57 anos</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 2 - Mãe da Ana -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-pink-500 to-pink-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "Como mães queremos o melhor para os nossos filhos. Quando pedi ajuda para a Ana, estava mesmo angustiada. Via a minha filha a sofrer com ansiedade e baixa-autoestima. Não sei o que fizeram dentro do consultório, mas foi magia. A Ana voltou a ser a pessoa alegre e feliz que era."
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">Mãe da Ana, 16 anos</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 3 - Fátima -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "Impressionante como tudo passou a fazer sentido. A partir desse momento decidi, a medo, tentar. Houve lágrimas, risos, abraços, mas mais importante, houve mudanças em mim. Agora sinto que eu sou a prioridade na minha vida."
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">Fátima, 36 anos</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 4 - Sara -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "Nem acredito que estou aqui a escrever este testemunho, pois o inalcançável foi alcançado. Estou bem. Sei que parece pouco estar bem, mas após tanto sofrimento poder dizer que ESTOU BEM é tudo. Muito obrigada!"
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">Sara, 42 anos</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 5 - Mãe do Henrique -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "O Henrique agora está mais seguro e confiante, e sei reconhecer que é o resultado direto do trabalho que fizeram. Eu própria sinto-me mais confiante para o orientar e apoiar. Toda a família beneficiou deste processo."
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">Mãe do Henrique, 12 anos</cite>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testemunho 6 - André -->
+                <div class="group hover-lift bg-white/90 backdrop-blur-lg border border-white/50 rounded-2xl p-6 md:p-8 shadow-xl fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <blockquote class="text-gray-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                                "Andava perdido. Com o trabalho que fizemos aqui, eu mudei. Compreendi o que estava a fazer mal e libertei-me disso. Eu sei que me diz que o que alcancei aqui é uma conquista minha, mas a verdade é que, sem si, não teria conseguido."
+                            </blockquote>
+                            <cite class="font-semibold text-gray-800 not-italic text-sm md:text-base">André, 24 anos</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços/Consultas -->
+    <section id="servicos" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 md:mb-20 fade-in">
+                <div class="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-6 py-2 mb-6">
+                    <!-- Ícone de calendário -->
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <span class="text-sm font-semibold text-primary uppercase tracking-wider">Consultas</span>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+                    Marque uma <span class="gradient-text">Consulta</span><br>
+                    <span class="text-secondary font-serif">PRESENCIAL ou ONLINE</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+                    <strong>Estamos aqui para si, à distância de um clique!</strong><br>
+                    Beneficie da flexibilidade, comodidade e conforto das consultas online.
+                </p>
+            </div>
+
+            <!-- Cards de Serviços -->
+            <div class="grid lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
+                <!-- Online Multilíngue - Destaque -->
+                <div class="group hover-lift relative bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20 rounded-3xl p-6 md:p-8 fade-in">
+                    <div class="absolute -top-3 left-6 md:left-8">
+                        <span class="bg-gradient-to-r from-primary to-secondary text-white px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-bold">RECOMENDADO</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4 mb-6 mt-4">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de vídeo -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800">Consultas Online</h3>
+                            <p class="text-primary font-semibold text-sm md:text-base">Multilíngues</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
+                        Sessões online com o nosso Método Consciência, para que obtenha os resultados que anseia, 
+                        em qualquer parte do mundo.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-2 md:gap-3 mb-6">
+                        <div class="flex items-center space-x-2 p-2 bg-white/50 rounded-lg">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm font-medium text-gray-700">Português</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-white/50 rounded-lg">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm font-medium text-gray-700">English</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-white/50 rounded-lg">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm font-medium text-gray-700">Español</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-white/50 rounded-lg">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm font-medium text-gray-700">Français</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Porto Presencial -->
+                <div class="group hover-lift bg-white border border-gray-200 rounded-3xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de localização -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800">Consultas Presenciais</h3>
+                            <p class="text-blue-600 font-semibold text-sm md:text-base">Porto</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
+                        Atendimento presencial no nosso consultório no Porto, num ambiente acolhedor e profissional.
+                    </p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Ambiente privado</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Equipamento especializado</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Fácil acesso</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barcelos Presencial -->
+                <div class="group hover-lift bg-white border border-gray-200 rounded-3xl p-6 md:p-8 fade-in">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <!-- Ícone de localização -->
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800">Consultas Presenciais</h3>
+                            <p class="text-green-600 font-semibold text-sm md:text-base">Barcelos</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
+                        Atendimento presencial no nosso consultório em Barcelos, próximo e conveniente.
+                    </p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Localização central</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Estacionamento</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                            <span class="text-xs md:text-sm text-gray-600">Ambiente tranquilo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vantagens -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16 fade-in">
+                <div class="text-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <!-- Ícone de mundo -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Acesso Global</h3>
+                    <p class="text-gray-600 text-sm">Consultas online disponíveis em qualquer lugar do mundo</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <!-- Ícone de relógio -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Flexibilidade de Horários</h3>
+                    <p class="text-gray-600 text-sm">Seg - Sex: 10:00 - 19:00, adaptado às suas necessidades</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <!-- Ícone de equipe -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Equipa Especializada</h3>
+                    <p class="text-gray-600 text-sm">Psicólogos dedicados e experientes com 16+ anos de prática</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <!-- Ícone de escudo -->
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Confidencialidade Total</h3>
+                    <p class="text-gray-600 text-sm">Ambiente seguro e privado para o seu processo terapêutico</p>
+                </div>
+            </div>
+
+            <!-- CTA Final dos Serviços -->
+            <div class="text-center bg-gradient-to-br from-primary/10 via-white to-secondary/10 rounded-3xl p-8 md:p-12 fade-in">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6">
+                    Pronto para Começar a Sua Transformação?
+                </h3>
+                <p class="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl mx-auto">
+                    Aqui não precisa de ficar com receio de reconhecer o que está a vivenciar. 
+                    Chegou ao Sítio Certo!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4 md:mb-6">
+                    <button class="group bg-gradient-to-r from-primary to-secondary hover:shadow-2xl text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                        <!-- Ícone de vídeo -->
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        Marcar Consulta Online
+                        <!-- Seta -->
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <button class="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center">
+                        <!-- Ícone de localização -->
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Marcar Consulta Presencial
+                    </button>
+                </div>
+                <p class="text-gray-600 text-sm md:text-base">
+                    Telefone: <a href="tel:+351935522267" class="text-primary hover:underline font-semibold">+351 935 522 267</a>
+                </p>
+            </div>
+        </div>
+    </section>

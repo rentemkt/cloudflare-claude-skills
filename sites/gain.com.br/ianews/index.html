@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo de IA: Lançamentos e Notícias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <script>
+      tailwind.config = {
+        darkMode: 'selector',
+        theme: {
+          extend: {
+            colors: {
+              'primary': '#6366f1',
+              'primary-dark': '#4f46e5'
+            },
+            animation: {
+              'slide-down': 'slideDown 0.4s ease-out',
+            },
+            keyframes: {
+              slideDown: {
+                'from': { opacity: '0', transform: 'translateY(-10px)', maxHeight: '0' },
+                'to': { opacity: '1', transform: 'translateY(0)', maxHeight: '4000px' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            transition: background-color 0.3s ease;
+        }
+        
+        [data-theme="dark"] body {
+            background: #0b1120;
+        }
+
+        .header-glass {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        [data-theme="dark"] .header-glass {
+            background: rgba(15, 23, 42, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-card {
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+        [data-theme="dark"] .category-card {
+            background: #1e293b;
+        }
+        [data-theme="dark"] .category-card h2, [data-theme="dark"] .category-card h3, [data-theme="dark"] .category-card h4 {
+            color: #f1f5f9;
+        }
+        [data-theme="dark"] .category-card p, [data-theme="dark"] .category-card li {
+            color: #cbd5e1;
+        }
+        [data-theme="dark"] .category-card b, [data-theme="dark"] .category-card strong {
+            color: #ffffff;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+        }
+        .category-card[data-color="openai"]:hover { border-left-color: #6366f1; }
+        .category-card[data-color="google"]:hover { border-left-color: #ef4444; }
+        .category-card[data-color="anthropic"]:hover { border-left-color: #d97706; }
+        .category-card[data-color="meta"]:hover { border-left-color: #0ea5e9; }
+        .category-card[data-color="perplexity"]:hover { border-left-color: #8b5cf6; }
+        .category-card[data-color="other"]:hover { border-left-color: #f97316; }
+        .category-card[data-color="ethics"]:hover { border-left-color: #eab308; }
+
+        .subcategory-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        [data-theme="dark"] .subcategory-card {
+            background: #334155;
+            border: 1px solid #475569;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+        
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary .summary-chevron { transform: rotate(180deg); }
+        .summary-chevron { transition: transform 0.3s ease; }
+        details[open] > .details-content { animation: slideDown 0.4s ease-out; }
+
+        .list-bullet li { padding-left: 1.25rem; position: relative; }
+        .list-bullet li::before {
+            content: ''; position: absolute; left: 0; top: 0.6rem;
+            width: 6px; height: 6px; border-radius: 50%; background-color: #6366f1;
+        }
+        [data-theme="dark"] .list-bullet li::before { background-color: #a78bfa; }
+
+        .video-container {
+            position: relative; overflow: hidden; width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            width: 100%; height: 100%; border-radius: 0.75rem;
+        }
+    </style>
+</head>
+
+<body class="m-0 p-0 text-gray-800 dark:text-gray-300">
+    <header class="header-glass text-gray-800 dark:text-white p-4 sm:p-6 sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-blue-600/20 dark:bg-blue-400/20 rounded-full text-blue-600 dark:text-blue-300">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-3xl font-extrabold tracking-tight">Resumo de IA</h1>
+                        <p class="text-sm sm:text-base opacity-80">Últimos Lançamentos e Notícias</p>
+                    </div>
+                </div>
+                <div id="theme-toggle" class="p-2 rounded-full hover:bg-gray-500/20 cursor-pointer transition-colors">
+                    <i data-lucide="sun" class="w-6 h-6 hidden dark:block text-yellow-400"></i>
+                    <i data-lucide="moon" class="w-6 h-6 block dark:hidden text-slate-600"></i>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <button id="expand-all" class="btn-primary text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 shadow-lg text-sm">
+                    <i data-lucide="chevrons-down-up" class="w-4 h-4"></i>
+                    Expandir Tudo
+                </button>
+                <button id="collapse-all" class="bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-100 px-4 py-2 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex items-center gap-2 text-sm">
+                    <i data-lucide="chevrons-up-down" class="w-4 h-4"></i>
+                    Recolher Tudo
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
+        <!-- O conteúdo dinâmico dos arquivos listados no manifest.json será inserido aqui -->
+        <div id="news-container" class="space-y-6"></div>
+    </main>
+
+    <script>
+        /**
+         * Cria o elemento HTML para uma categoria de notícia a partir de um objeto de dados.
+         * @param {object} data - O objeto contendo os dados da categoria.
+         * @returns {HTMLElement} O elemento <details> pronto para ser inserido na página.
+         */
+        function createNewsCategory(data) {
+            const categoryCard = document.createElement('details');
+            categoryCard.className = 'category-card rounded-2xl shadow-md overflow-hidden opacity-0 translate-y-5 transition-all duration-700';
+            categoryCard.setAttribute('data-color', data.color);
+
+            const subcategoriesHTML = data.subcategories.map(sub => `
+                <details class="subcategory-card rounded-xl overflow-hidden" ${sub.open ? 'open' : ''}>
+                    <summary class="font-semibold p-4 flex items-center justify-between">
+                        <h3 class="flex items-center gap-3 text-lg"><i data-lucide="${sub.icon || 'circle'}" class="w-5 h-5 text-blue-500"></i>${sub.title}</h3>
+                        <i data-lucide="chevron-down" class="summary-chevron w-5 h-5 text-gray-500"></i>
+                    </summary>
+                    <div class="details-content px-6 pb-4">
+                        <ul class="list-bullet space-y-3 mt-3">
+                            ${sub.points.map(point => `<li><b>${point.label}:</b> ${point.description}</li>`).join('')}
+                        </ul>
+                        ${sub.videos && sub.videos.length > 0 ? `
+                            <div class="mt-6">
+                                <h4 class="font-semibold mb-3">Assista para saber mais:</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    ${sub.videos.map(video => `<div class="video-container"><iframe src="${video.url}" title="${video.title}" frameborder="0" allowfullscreen></iframe>`).join('')}
+                                </div>
+                            </div>` : ''}
+                    </div>
+                </details>
+            `).join('');
+
+            categoryCard.innerHTML = `
+                <summary class="font-bold p-5 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl text-white"><i data-lucide="${data.icon || 'newspaper'}" class="w-6 h-6"></i></div>
+                        <h2 class="text-2xl font-bold">${data.title}</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="summary-chevron w-6 h-6 text-primary"></i>
+                </summary>
+                <div class="details-content p-6 pt-2 space-y-4">${subcategoriesHTML}</div>`;
+            
+            return categoryCard;
+        }
+
+        /**
+         * Carrega todo o conteúdo a partir dos arquivos listados no manifest.json.
+         * @returns {Promise<boolean>} Retorna true se o conteúdo foi carregado com sucesso, false caso contrário.
+         */
+        async function loadAllContent() {
+            const newsContainer = document.getElementById('news-container');
+            try {
+                // 1. Busca o arquivo-mestre (o manifesto) que lista todos os arquivos de conteúdo.
+                const manifestResponse = await fetch('manifest.json');
+                if (!manifestResponse.ok) throw new Error('manifest.json não encontrado ou com erro.');
+                const manifest = await manifestResponse.json();
+                
+                if (!manifest.files || manifest.files.length === 0) {
+                    newsContainer.innerHTML = '<p class="text-center">Nenhum arquivo de conteúdo listado no manifesto.</p>';
+                    return true; // Sucesso técnico, mas sem conteúdo.
+                }
+
+                // 2. Cria uma lista de "promessas" de busca para cada arquivo de notícia, em paralelo.
+                const fetchPromises = manifest.files.map(fileUrl => 
+                    fetch(fileUrl).then(res => {
+                        if (!res.ok) throw new Error(`Falha ao carregar ${fileUrl}`);
+                        return res.json();
+                    })
+                );
+
+                // 3. Aguarda que todos os arquivos sejam baixados e processados.
+                const allNewsSections = await Promise.all(fetchPromises);
+
+                // 4. Itera sobre o conteúdo de cada arquivo e renderiza na tela.
+                allNewsSections.forEach(newsArray => {
+                    if (Array.isArray(newsArray)) {
+                        newsArray.forEach(categoryData => {
+                            const newCategoryElement = createNewsCategory(categoryData);
+                            newsContainer.appendChild(newCategoryElement);
+                        });
+                    }
+                });
+                
+                return true; // Sucesso total.
+
+            } catch (error) {
+                console.error('Erro detalhado ao carregar o conteúdo:', error);
+                newsContainer.innerHTML = `<div class="text-center font-semibold text-red-600 p-4 bg-red-100 dark:bg-red-900/50 rounded-lg">
+                    <p>Falha ao carregar as notícias.</p>
+                    <p class="text-sm font-normal mt-1">${error.message}</p>
+                </div>`;
+                return false; // Falha no carregamento.
+            }
+        }
+
+        // Script principal que roda quando a página é carregada.
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Configura o tema (escuro/claro) primeiro.
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            htmlEl.setAttribute('data-theme', savedTheme);
+            themeToggle.addEventListener('click', () => {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Carrega todo o conteúdo dinâmico.
+            const loadedSuccessfully = await loadAllContent();
+
+            // Se o conteúdo foi carregado, configura as interações e animações.
+            if (loadedSuccessfully) {
+                // Botões "Expandir/Recolher Tudo".
+                const allDetails = document.querySelectorAll('main details');
+                document.getElementById('expand-all').addEventListener('click', () => allDetails.forEach(d => d.open = true));
+                document.getElementById('collapse-all').addEventListener('click', () => allDetails.forEach(d => d.open = false));
+
+                // Animação de entrada dos cards.
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.remove('opacity-0', 'translate-y-5');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.category-card').forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 100}ms`;
+                    observer.observe(card);
+                });
+
+                // Renderiza todos os ícones da biblioteca Lucide que foram adicionados dinamicamente.
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

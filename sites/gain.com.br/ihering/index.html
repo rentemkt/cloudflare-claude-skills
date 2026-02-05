@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev 2025: Trilha Completa - Do PHP ao IA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js para interações -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Prism.js para syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" id="prism-light" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" id="prism-dark" disabled />
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'slide-down': 'slideDown 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            from: { transform: 'translateY(30px)', opacity: 0 },
+                            to: { transform: 'translateY(0)', opacity: 1 },
+                        },
+                        slideDown: {
+                            from: { transform: 'translateY(-30px)', opacity: 0 },
+                            to: { transform: 'translateY(0)', opacity: 1 },
+                        },
+                        fadeIn: {
+                            from: { opacity: 0 },
+                            to: { opacity: 1 },
+                        },
+                        scaleIn: {
+                            from: { transform: 'scale(0.95)', opacity: 0 },
+                            to: { transform: 'scale(1)', opacity: 1 },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .glass-light {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+        
+        .glass-dark {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 100px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 100px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .roadmap-line {
+            background: linear-gradient(to bottom, #667eea, #764ba2, #10b981);
+            width: 2px;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+        
+        .pulse-dot {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body x-data="{ 
+    darkMode: false, 
+    currentSection: 1,
+    totalSections: 10,
+    scrollToSection(num) {
+        document.getElementById('section-' + num).scrollIntoView({ behavior: 'smooth' });
+        this.currentSection = num;
+    }
+}" 
+x-init="
+    darkMode = localStorage.getItem('darkMode') === 'true';
+    $watch('darkMode', val => {
+        localStorage.setItem('darkMode', val);
+        document.documentElement.classList.toggle('dark', val);
+        document.getElementById('prism-light').disabled = val;
+        document.getElementById('prism-dark').disabled = !val;
+    });
+    document.documentElement.classList.toggle('dark', darkMode);
+"
+class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-pink-900 text-gray-900 dark:text-white overflow-x-hidden transition-colors duration-300">
+    
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-light dark:glass-dark border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"></div>
+                    <span class="font-semibold text-lg">Dev 2025</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-2">
+                    <template x-for="i in totalSections" :key="i">
+                        <button 
+                            @click="scrollToSection(i)"
+                            :class="currentSection === i ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gray-300 dark:bg-gray-600'"
+                            class="w-2 h-2 rounded-full transition-all duration-300 hover:scale-150">
+                        </button>
+                    </template>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button @click="darkMode = !darkMode" 
+                            class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button @click="scrollToSection(2)"
+                            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-medium hover:shadow-xl transition-all">
+                        Começar Jornada
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Section 1: Hero -->
+    <section id="section-1" class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-6xl mx-auto text-center animate-fade-in">
+            <div class="inline-flex items-center px-4 py-2 glass-light dark:glass-dark rounded-full text-sm font-medium mb-8">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2"></span>
+                Guia Definitivo 2025
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl font-bold mb-6">
+                <span class="gradient-text">De PHP 2007</span>
+                <br />
+                <span class="text-gray-800 dark:text-gray-100">para Dev + IA 2025</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+                O caminho mais rápido e eficiente para você se reposicionar
+                <br />
+                <span class="text-gray-500 dark:text-gray-400">Sem cair nas armadilhas do hype</span>
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="glass-light dark:glass-dark rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <div class="text-5xl font-bold gradient-text mb-2">18</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Anos de evolução</div>
+                </div>
+                
+                <div class="glass-light dark:glass-dark rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <div class="text-5xl font-bold gradient-success mb-2">3</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Trilhas principais</div>
+                </div>
+                
+                <div class="glass-light dark:glass-dark rounded-2xl p-6 hover:scale-105 transition-transform">
+                    <div class="text-5xl font-bold gradient-warning mb-2">90</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Dias para dominar</div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button @click="scrollToSection(2)"
+                        class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:scale-105 transition-all">
+                    Ver Trilhas Recomendadas →
+                </button>
+                
+                <button @click="scrollToSection(5)"
+                        class="px-8 py-4 glass-light dark:glass-dark rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    Pular para Armadilhas
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 2: Situação Atual -->
+    <section id="section-2" class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">Sua Situação Atual</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Vamos mapear onde você está</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- O que você tem -->
+                <div class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 gradient-success">✅ O Que Você Tem</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <strong>Base sólida em programação</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">PHP, HTML, CSS, JS - você sabe o fundamental</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <strong>Experiência com deploy real</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">FTP, cPanel, Apache - você punha no ar</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <strong>Mentalidade "fazer funcionar"</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Sem frescura, código que resolve</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 mt-1">✓</span>
+                            <div>
+                                <strong>Conhece banco de dados</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">MySQL, queries SQL na mão</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- O que mudou -->
+                <div class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 gradient-warning">⚠️ O Que Mudou</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-3 mt-1">→</span>
+                            <div>
+                                <strong>JavaScript virou tudo</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Frontend, backend, mobile, desktop, IoT</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-3 mt-1">→</span>
+                            <div>
+                                <strong>Git é obrigatório</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Acabou FTP, agora é push/pull/merge</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-3 mt-1">→</span>
+                            <div>
+                                <strong>Cloud dominou tudo</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">AWS, Vercel, Netlify - deploy em 1 clique</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-3 mt-1">→</span>
+                            <div>
+                                <strong>IA chegou pra ficar</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Copilot, ChatGPT, Claude - seus novos parceiros</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Diagnóstico Rápido -->
+            <div class="mt-12 glass-light dark:glass-dark rounded-3xl p-8">
+                <h3 class="text-xl font-bold mb-4">💡 Diagnóstico Rápido</h3>
+                <div class="bg-green-100 dark:bg-green-900/30 rounded-xl p-4">
+                    <p class="text-green-800 dark:text-green-300">
+                        <strong>Boa notícia:</strong> Você tem 70% do que precisa. Falta apenas atualizar 30% com as ferramentas certas.
+                        A base que você tem de PHP é OURO - a lógica é a mesma, só mudou a sintaxe!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 3: As 3 Trilhas -->
+    <section id="section-3" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">As 3 Trilhas Vencedoras</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Escolha sua jornada baseado no seu objetivo</p>
+            </div>
+            
+            <div x-data="{ selectedPath: 1 }">
+                <!-- Path Selector -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <button @click="selectedPath = 1"
+                            :class="selectedPath === 1 ? 'bg-blue-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        🚀 Fullstack Moderno
+                    </button>
+                    <button @click="selectedPath = 2"
+                            :class="selectedPath === 2 ? 'bg-purple-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        🤖 Dev + IA
+                    </button>
+                    <button @click="selectedPath = 3"
+                            :class="selectedPath === 3 ? 'bg-green-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        ⚡ Simplicidade Radical
+                    </button>
+                </div>
+                
+                <!-- Path Details -->
+                <!-- Trilha 1: Fullstack Moderno -->
+                <div x-show="selectedPath === 1" x-transition class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-3xl font-bold mb-6 gradient-text">Trilha 1: Fullstack Moderno</h3>
+                    <p class="text-lg mb-6 text-gray-600 dark:text-gray-400">Para quem quer dominar o mercado tradicional</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">📚 O que aprender (ordem)</h4>
+                            <ol class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">1</span>
+                                    <div>
+                                        <strong>Git & GitHub</strong> (3 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">clone, add, commit, push, pull, branch, merge</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">2</span>
+                                    <div>
+                                        <strong>JavaScript ES6+</strong> (7 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">arrow functions, destructuring, async/await, modules</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">3</span>
+                                    <div>
+                                        <strong>TypeScript Básico</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">tipos, interfaces, generics básico</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">4</span>
+                                    <div>
+                                        <strong>React ou Vue</strong> (15 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">componentes, estado, props, hooks/composition</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">5</span>
+                                    <div>
+                                        <strong>Next.js ou Nuxt</strong> (10 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">SSR, routing, API routes</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">6</span>
+                                    <div>
+                                        <strong>Node.js + Express</strong> (10 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">APIs REST, middleware, auth</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">💼 Resultado Final</h4>
+                            <div class="bg-blue-100 dark:bg-blue-900/30 rounded-xl p-4 mb-4">
+                                <p class="text-blue-800 dark:text-blue-300 font-semibold mb-2">Em 50 dias você será:</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• Fullstack JavaScript/TypeScript</li>
+                                    <li>• Apto para vagas de R$ 8-15k CLT</li>
+                                    <li>• Pronto para projetos modernos</li>
+                                    <li>• Fluente no ecosistema atual</li>
+                                </ul>
+                            </div>
+                            
+                            <h4 class="text-xl font-bold mb-4 mt-6">🎯 Projetos para Portfolio</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>Clone do Twitter</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">React + Node + MongoDB</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>E-commerce</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Next.js + Stripe + PostgreSQL</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>Dashboard Admin</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Vue + Tailwind + Supabase</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                        <h4 class="font-bold mb-3">⚡ Atalhos Permitidos:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">
+                                Use Vite ao invés de Webpack
+                            </span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">
+                                Tailwind ao invés de CSS puro
+                            </span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">
+                                Supabase ao invés de backend próprio
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trilha 2: Dev + IA -->
+                <div x-show="selectedPath === 2" x-transition class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-3xl font-bold mb-6 gradient-text">Trilha 2: Dev + IA</h3>
+                    <p class="text-lg mb-6 text-gray-600 dark:text-gray-400">Para quem quer surfar a onda do futuro</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">📚 O que aprender (ordem)</h4>
+                            <ol class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">1</span>
+                                    <div>
+                                        <strong>Python Básico</strong> (7 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">sintaxe, estruturas, funções, classes</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">2</span>
+                                    <div>
+                                        <strong>APIs de IA</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">OpenAI, Claude, Gemini APIs</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">3</span>
+                                    <div>
+                                        <strong>LangChain/LlamaIndex</strong> (10 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">RAG, chains, agents, memory</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">4</span>
+                                    <div>
+                                        <strong>Vector Databases</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Pinecone, Weaviate, embeddings</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">5</span>
+                                    <div>
+                                        <strong>Streamlit/Gradio</strong> (3 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">interfaces rápidas para demos IA</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">6</span>
+                                    <div>
+                                        <strong>Fine-tuning Básico</strong> (10 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">LoRA, QLoRA, datasets</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">💼 Resultado Final</h4>
+                            <div class="bg-purple-100 dark:bg-purple-900/30 rounded-xl p-4 mb-4">
+                                <p class="text-purple-800 dark:text-purple-300 font-semibold mb-2">Em 40 dias você será:</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• AI Engineer iniciante</li>
+                                    <li>• Apto para vagas de R$ 10-20k</li>
+                                    <li>• Construtor de soluções com IA</li>
+                                    <li>• Diferenciado no mercado</li>
+                                </ul>
+                            </div>
+                            
+                            <h4 class="text-xl font-bold mb-4 mt-6">🎯 Projetos para Portfolio</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>Chatbot com RAG</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">PDFs + LangChain + GPT-4</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>Agente Autônomo</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">AutoGPT style + tools</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>Analisador de Código</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Code review automático com IA</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                        <h4 class="font-bold mb-3">🚀 Vantagem Competitiva:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">
+                                Mercado em explosão
+                            </span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">
+                                Poucos profissionais qualificados
+                            </span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">
+                                Salários acima da média
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trilha 3: Simplicidade Radical -->
+                <div x-show="selectedPath === 3" x-transition class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-3xl font-bold mb-6 gradient-text">Trilha 3: Simplicidade Radical</h3>
+                    <p class="text-lg mb-6 text-gray-600 dark:text-gray-400">Para quem quer produtividade máxima com mínima complexidade</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">📚 O que aprender (ordem)</h4>
+                            <ol class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">1</span>
+                                    <div>
+                                        <strong>Bun Runtime</strong> (1 dia)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">instalação, comandos básicos</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">2</span>
+                                    <div>
+                                        <strong>TypeScript Direto</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">tipos sem build, Bun roda .ts</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">3</span>
+                                    <div>
+                                        <strong>Hono Framework</strong> (3 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">API minimalista, tipo Express</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">4</span>
+                                    <div>
+                                        <strong>HTMX + Alpine.js</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">interatividade sem React</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">5</span>
+                                    <div>
+                                        <strong>SQLite + Drizzle</strong> (5 dias)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">banco embutido, ORM simples</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">6</span>
+                                    <div>
+                                        <strong>Deploy em 1 clique</strong> (1 dia)
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Railway, Render, Fly.io</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-bold mb-4">💼 Resultado Final</h4>
+                            <div class="bg-green-100 dark:bg-green-900/30 rounded-xl p-4 mb-4">
+                                <p class="text-green-800 dark:text-green-300 font-semibold mb-2">Em 20 dias você será:</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• Desenvolvedor ultra produtivo</li>
+                                    <li>• Freelancer de alta velocidade</li>
+                                    <li>• Criador de MVPs rápidos</li>
+                                    <li>• Mestre da simplicidade</li>
+                                </ul>
+                            </div>
+                            
+                            <h4 class="text-xl font-bold mb-4 mt-6">🎯 Projetos para Portfolio</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>SaaS Completo</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Bun + HTMX + Stripe</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>API de Alta Performance</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Hono + SQLite + Cache</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">▸</span>
+                                    <div>
+                                        <strong>PWA Offline-First</strong>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Alpine + Service Workers</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                        <h4 class="font-bold mb-3">💎 Por que esta trilha é OURO:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">
+                                Zero build = Zero stress
+                            </span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">
+                                Deploy em minutos
+                            </span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">
+                                Perfeito para freelance
+                            </span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">
+                                Mais próximo do PHP raiz
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 4: Roadmap Visual -->
+    <section id="section-4" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">Seu Roadmap de 90 Dias</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Plano de ação semana a semana</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full roadmap-line"></div>
+                
+                <!-- Weeks -->
+                <div class="space-y-12">
+                    <!-- Semanas 1-2 -->
+                    <div class="relative flex items-center justify-between">
+                        <div class="w-5/12 text-right pr-8">
+                            <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                                <h3 class="text-xl font-bold mb-2">Semanas 1-2: Fundação</h3>
+                                <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• Git & GitHub basics</li>
+                                    <li>• VS Code setup + extensões</li>
+                                    <li>• JavaScript moderno</li>
+                                    <li>• Terminal/CLI básico</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full pulse-dot"></div>
+                        <div class="w-5/12"></div>
+                    </div>
+                    
+                    <!-- Semanas 3-4 -->
+                    <div class="relative flex items-center justify-between">
+                        <div class="w-5/12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full pulse-dot"></div>
+                        <div class="w-5/12 pl-8">
+                            <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                                <h3 class="text-xl font-bold mb-2">Semanas 3-4: Especialização</h3>
+                                <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• TypeScript ou Python</li>
+                                    <li>• Framework escolhido</li>
+                                    <li>• Primeiro projeto mini</li>
+                                    <li>• Deploy básico</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Semanas 5-8 -->
+                    <div class="relative flex items-center justify-between">
+                        <div class="w-5/12 text-right pr-8">
+                            <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                                <h3 class="text-xl font-bold mb-2">Semanas 5-8: Construção</h3>
+                                <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• Projeto principal #1</li>
+                                    <li>• Integração com APIs</li>
+                                    <li>• Banco de dados</li>
+                                    <li>• Autenticação</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-green-500 to-blue-600 rounded-full pulse-dot"></div>
+                        <div class="w-5/12"></div>
+                    </div>
+                    
+                    <!-- Semanas 9-12 -->
+                    <div class="relative flex items-center justify-between">
+                        <div class="w-5/12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-yellow-500 to-red-600 rounded-full pulse-dot"></div>
+                        <div class="w-5/12 pl-8">
+                            <div class="glass-light dark:glass-dark rounded-2xl p-6 border-2 border-green-500">
+                                <h3 class="text-xl font-bold mb-2">Semanas 9-12: Profissional</h3>
+                                <ul class="text-sm space-y-1 text-gray-600 dark:text-gray-400">
+                                    <li>• Portfolio completo</li>
+                                    <li>• LinkedIn otimizado</li>
+                                    <li>• Aplicando para vagas</li>
+                                    <li>• Freelance iniciando</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Meta Final -->
+            <div class="mt-16 text-center">
+                <div class="glass-light dark:glass-dark rounded-3xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 gradient-success">🎯 Meta dos 90 Dias</h3>
+                    <p class="text-lg mb-4">Você terá:</p>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">3+</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Projetos no Portfolio</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">10+</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Tecnologias dominadas</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">∞</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Oportunidades</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 5: Armadilhas (Voos de Galinha) -->
+    <section id="section-5" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-danger">⚠️ Armadilhas: Os "Voos de Galinha"</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Tecnologias que fizeram barulho mas não decolaram</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Voos de Galinha Recentes -->
+                <div class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-red-500">🐔 Evite Agora (2023-2025)</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">Web3/Blockchain Dev</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hype morreu, mercado encolheu 90%</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">Deno</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Prometeu substituir Node, não aconteceu</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">GraphQL (para tudo)</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Complexidade desnecessária para 90% dos casos</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">Micro-frontends</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Overengineering, poucos adotaram</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">Flutter Web</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Performance ruim, SEO péssimo</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold">Remix (framework)</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Next.js já domina, sem espaço</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Apostas Arriscadas -->
+                <div class="glass-light dark:glass-dark rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-yellow-500">⚡ Apostas Arriscadas</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">Rust para Web</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Pode vingar, mas curva de aprendizado brutal</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">WebAssembly puro</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Futuro, mas ainda muito cedo</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">Qwik Framework</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Interessante, mas comunidade pequena</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">Solid.js</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Bom, mas React/Vue dominam</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">Bun (para produção)</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Ótimo para dev, cuidado em prod</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold">Astro</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Nicho específico, não generalista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Por que falharam -->
+            <div class="mt-12 glass-light dark:glass-dark rounded-3xl p-8">
+                <h3 class="text-2xl font-bold mb-6">📊 Por Que Falharam?</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">🏢</div>
+                        <h4 class="font-bold mb-2">Sem Adoção Enterprise</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Empresas grandes não adotaram, sem vagas</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">👥</div>
+                        <h4 class="font-bold mb-2">Comunidade Pequena</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Poucos tutoriais, libs, suporte</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">🔧</div>
+                        <h4 class="font-bold mb-2">Complexidade vs Benefício</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Muito esforço para pouco ganho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 6: Ferramentas Essenciais -->
+    <section id="section-6" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">🛠️ Ferramentas Essenciais 2025</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">O que você REALMENTE precisa</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Editor -->
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">💻 Editor/IDE</h3>
+                    <div class="space-y-3">
+                        <div class="bg-green-100 dark:bg-green-900/30 rounded-xl p-3">
+                            <strong class="text-green-800 dark:text-green-300">VS Code</strong>
+                            <p class="text-sm">Padrão do mercado, gratuito</p>
+                        </div>
+                        <div>
+                            <strong>Cursor</strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">VS Code + IA integrada</p>
+                        </div>
+                        <div>
+                            <strong>Zed</strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Rápido, minimalista</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- IA Assistants -->
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">🤖 IA Assistants</h3>
+                    <div class="space-y-3">
+                        <div class="bg-green-100 dark:bg-green-900/30 rounded-xl p-3">
+                            <strong class="text-green-800 dark:text-green-300">GitHub Copilot</strong>
+                            <p class="text-sm">Melhor para código</p>
+                        </div>
+                        <div>
+                            <strong>Claude 4.1opus e Claude Code (time limit) </strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Alto padrão, Explicações, arquitetura</p>
+                        </div>
+                        <div>
+                            <strong>ChatGPT e Gemini 2.5 pro</strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Debug, snippets, atençao no "Codex hight" </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Deploy -->
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">🚀 Deploy Fácil</h3>
+                    <div class="space-y-3">
+                        <div class="bg-green-100 dark:bg-green-900/30 rounded-xl p-3">
+                            <strong class="text-green-800 dark:text-green-300">Vercel</strong>
+                            <p class="text-sm">Next.js, frontend</p>
+                        </div>
+                        <div>
+                            <strong>Railway</strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Fullstack, databases</p>
+                        </div>
+                        <div>
+                            <strong>Netlify</strong>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sites estáticos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Extensões VS Code Essenciais -->
+            <div class="mt-12 glass-light dark:glass-dark rounded-3xl p-8">
+                <h3 class="text-2xl font-bold mb-6">🔌 Extensões VS Code Obrigatórias</h3>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="text-center p-4 bg-blue-100 dark:bg-blue-900/30 rounded-xl">
+                        <div class="text-2xl mb-2">🎨</div>
+                        <strong class="text-sm">Prettier</strong>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Formatação automática</p>
+                    </div>
+                    <div class="text-center p-4 bg-purple-100 dark:bg-purple-900/30 rounded-xl">
+                        <div class="text-2xl mb-2">🔍</div>
+                        <strong class="text-sm">ESLint</strong>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Encontra erros</p>
+                    </div>
+                    <div class="text-center p-4 bg-green-100 dark:bg-green-900/30 rounded-xl">
+                        <div class="text-2xl mb-2">🤖</div>
+                        <strong class="text-sm">GitHub Copilot</strong>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">IA no editor</p>
+                    </div>
+                    <div class="text-center p-4 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl">
+                        <div class="text-2xl mb-2">🌈</div>
+                        <strong class="text-sm">Tailwind CSS</strong>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Autocomplete classes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 7: Recursos de Aprendizado -->
+    <section id="section-7" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">📚 Onde Aprender (Grátis + Pago)</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Os melhores recursos testados e aprovados</p>
+            </div>
+            
+            <div x-data="{ category: 'free' }">
+                <!-- Tabs -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <button @click="category = 'free'"
+                            :class="category === 'free' ? 'bg-green-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        🆓 Recursos Gratuitos
+                    </button>
+                    <button @click="category = 'paid'"
+                            :class="category === 'paid' ? 'bg-blue-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        💰 Vale a Pena Pagar
+                    </button>
+                    <button @click="category = 'avoid'"
+                            :class="category === 'avoid' ? 'bg-red-500 text-white' : 'glass-light dark:glass-dark'"
+                            class="px-6 py-3 rounded-full font-medium transition-all">
+                        ❌ Evite
+                    </button>
+                </div>
+                
+                <!-- Free Resources -->
+                <div x-show="category === 'free'" x-transition>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                            <h3 class="text-xl font-bold mb-4">🎥 YouTube Channels</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>• Fireship</span>
+                                    <span class="text-sm text-green-500">100% recomendado</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• Web Dev Simplified</span>
+                                    <span class="text-sm text-green-500">Iniciante friendly</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• Theo - t3.gg</span>
+                                    <span class="text-sm text-green-500">Tendências reais</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• ThePrimeagen</span>
+                                    <span class="text-sm text-yellow-500">Avançado</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                            <h3 class="text-xl font-bold mb-4">📖 Documentação</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>• MDN Web Docs</span>
+                                    <span class="text-sm text-green-500">Bíblia do web dev</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• JavaScript.info</span>
+                                    <span class="text-sm text-green-500">Tutorial completo</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• FreeCodeCamp</span>
+                                    <span class="text-sm text-green-500">Prática + certificado</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• The Odin Project</span>
+                                    <span class="text-sm text-green-500">Fullstack path</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                            <h3 class="text-xl font-bold mb-4">🎮 Prática Interativa</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>• Exercism</span>
+                                    <span class="text-sm text-green-500">Mentoria grátis</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• CodeWars</span>
+                                    <span class="text-sm text-green-500">Gamificado</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• LeetCode</span>
+                                    <span class="text-sm text-yellow-500">Para entrevistas</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• Frontend Mentor</span>
+                                    <span class="text-sm text-green-500">Projetos reais</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                            <h3 class="text-xl font-bold mb-4">🤖 IA Learning</h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span>• Hugging Face Learn</span>
+                                    <span class="text-sm text-green-500">IA/ML grátis</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• Fast.ai</span>
+                                    <span class="text-sm text-green-500">Deep learning</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• Google Colab</span>
+                                    <span class="text-sm text-green-500">GPU grátis</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>• OpenAI Cookbook</span>
+                                    <span class="text-sm text-green-500">Exemplos prontos</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paid Resources -->
+                <div x-show="category === 'paid'" x-transition>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6 border-2 border-green-500">
+                            <h3 class="text-xl font-bold mb-4">💎 Comandos úteis</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <strong>Esqueceu build on?</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">ps aux | grep -E "(node|npm|test|build|jest|mocha|webpack|vite|tsx)" | grep -v grep/p>
+                                </li>
+                                <li>
+                                    <strong>Total TypeScript</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">-</p>
+                                </li>
+                                <li>
+                                    <strong>Web Dev</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">fullstack completo</p>
+                                </li>
+                                <li>
+                                    <strong>Three</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">único bom</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                            <h3 class="text-xl font-bold mb-4">📚 Plataformas</h3>
+                            <ul class="space-y-3">
+                                <li>
+                                    <strong>Frontend Masters</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">$39/mês - Qualidade premium</p>
+                                </li>
+                                <li>
+                                    <strong>Egghead.io</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">$25/mês - Direto ao ponto</p>
+                                </li>
+                                <li>
+                                    <strong>Udemy (selecionados)</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">$15 na promo - Só Maximilian ou Colt</p>
+                                </li>
+                                <li>
+                                    <strong>O'Reilly</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">$49/mês - Livros + vídeos</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Avoid -->
+                <div x-show="category === 'avoid'" x-transition>
+                    <div class="glass-light dark:glass-dark rounded-2xl p-6 border-2 border-red-500">
+                        <h3 class="text-xl font-bold mb-4 text-red-500">⚠️ Fuja Destes</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <ul class="space-y-3">
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>Cursos de "influencers"</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">R$ 2000 por PDF + grupo no Telegram</p>
+                                </li>
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>Bootcamps de 24 semanas</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">R$ 8000 para aprender o que tem grátis</p>
+                                </li>
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>Certificações random</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Ninguém liga para certificado de HTML</p>
+                                </li>
+                            </ul>
+                            <ul class="space-y-3">
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>Livros de 2020 para trás</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">JavaScript muda rápido demais</p>
+                                </li>
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>W3Schools</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Desatualizado, use MDN</p>
+                                </li>
+                                <li class="border-l-4 border-red-500 pl-4">
+                                    <strong>Codecademy PRO</strong>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Overpriced, conteúdo raso</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 8: Mercado de Trabalho -->
+    <section id="section-8" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">💰 Mercado Real 2025</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Salários, demanda e como se posicionar</p>
+            </div>
+            
+            <!-- Salários por Nível -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-center">Faixas Salariais (Brasil - CLT)</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                        <h4 class="text-lg font-bold mb-4">👶 Júnior (0-2 anos)</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Frontend</span>
+                                <strong>R$ 3-5k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Backend</span>
+                                <strong>R$ 3.5-6k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fullstack</span>
+                                <strong>R$ 4-6k</strong>
+                            </div>
+                            <div class="flex justify-between text-green-600 dark:text-green-400">
+                                <span>+ IA/ML</span>
+                                <strong>R$ 5-8k</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                        <h4 class="text-lg font-bold mb-4">👨‍💻 Pleno (2-5 anos)</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Frontend</span>
+                                <strong>R$ 6-10k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Backend</span>
+                                <strong>R$ 7-12k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fullstack</span>
+                                <strong>R$ 8-12k</strong>
+                            </div>
+                            <div class="flex justify-between text-green-600 dark:text-green-400">
+                                <span>+ IA/ML</span>
+                                <strong>R$ 10-15k</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                        <h4 class="text-lg font-bold mb-4">🚀 Sênior (5+ anos)</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Frontend</span>
+                                <strong>R$ 12-18k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Backend</span>
+                                <strong>R$ 15-22k</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Fullstack</span>
+                                <strong>R$ 15-25k</strong>
+                            </div>
+                            <div class="flex justify-between text-green-600 dark:text-green-400">
+                                <span>+ IA/ML</span>
+                                <strong>R$ 20-35k</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tecnologias Mais Pedidas -->
+            <div class="glass-light dark:glass-dark rounded-3xl p-8 mb-12">
+                <h3 class="text-2xl font-bold mb-6">🔥 Top 10 Tecnologias Mais Pedidas</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <span class="w-8 text-center font-bold">1.</span>
+                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-8 relative">
+                            <div class="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center px-4" style="width: 95%">
+                                <span class="text-white text-sm font-medium">React/Next.js</span>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm">95%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-8 text-center font-bold">2.</span>
+                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-8 relative">
+                            <div class="absolute left-0 top-0 h-full bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center px-4" style="width: 87%">
+                                <span class="text-white text-sm font-medium">TypeScript</span>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm">87%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-8 text-center font-bold">3.</span>
+                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-8 relative">
+                            <div class="absolute left-0 top-0 h-full bg-gradient-to-r from-yellow-500 to-red-600 rounded-full flex items-center px-4" style="width: 82%">
+                                <span class="text-white text-sm font-medium">Node.js</span>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm">82%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-8 text-center font-bold">4.</span>
+                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-8 relative">
+                            <div class="absolute left-0 top-0 h-full bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center px-4" style="width: 75%">
+                                <span class="text-white text-sm font-medium">Docker/K8s</span>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm">75%</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-8 text-center font-bold">5.</span>
+                        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-8 relative">
+                            <div class="absolute left-0 top-0 h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center px-4" style="width: 68%">
+                                <span class="text-white text-sm font-medium">AWS/Cloud</span>
+                            </div>
+                        </div>
+                        <span class="ml-4 text-sm">68%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dicas para se Destacar -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">✅ Como se Destacar</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1">✓</span>
+                            <div>
+                                <strong>Portfolio > Diploma</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3 projetos valem mais que faculdade</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1">✓</span>
+                            <div>
+                                <strong>GitHub ativo</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Commits diários por 30 dias</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1">✓</span>
+                            <div>
+                                <strong>LinkedIn otimizado</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Palavras-chave, projetos, artigos</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2 mt-1">✓</span>
+                            <div>
+                                <strong>Contribua open source</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Mesmo que seja doc/tradução</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-4">🎯 Nicho = $$</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1">💰</span>
+                            <div>
+                                <strong>Blockchain/Smart Contracts</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Poucos sabem, pagam muito</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1">💰</span>
+                            <div>
+                                <strong>Segurança/DevSecOps</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Sempre em alta demanda</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1">💰</span>
+                            <div>
+                                <strong>Performance/Core Web Vitals</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Especialista em otimização</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-500 mr-2 mt-1">💰</span>
+                            <div>
+                                <strong>IA + Domínio específico</strong>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">IA para saúde, finanças, etc</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 9: Plano de Ação -->
+    <section id="section-9" class="min-h-screen px-6 py-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">
+                    <span class="gradient-text">🎯 Seu Plano de Ação</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Checklist para começar HOJE</p>
+            </div>
+            
+            <!-- Checklist Interativo -->
+            <div class="glass-light dark:glass-dark rounded-3xl p-8 max-w-3xl mx-auto"
+                 x-data="{ 
+                     tasks: [
+                         { id: 1, text: 'Instalar VS Code', done: false },
+                         { id: 2, text: 'Criar conta no GitHub', done: false },
+                         { id: 3, text: 'Instalar Git', done: false },
+                         { id: 4, text: 'Escolher uma das 3 trilhas', done: false },
+                         { id: 5, text: 'Fazer primeiro commit', done: false },
+                         { id: 6, text: 'Começar curso/tutorial escolhido', done: false },
+                         { id: 7, text: 'Entrar em comunidades (Discord/Slack)', done: false },
+                         { id: 8, text: 'Configurar LinkedIn', done: false },
+                         { id: 9, text: 'Definir meta de 90 dias', done: false },
+                         { id: 10, text: 'Começar projeto #1', done: false }
+                     ],
+                     get progress() {
+                         const completed = this.tasks.filter(t => t.done).length;
+                         return Math.round((completed / this.tasks.length) * 100);
+                     }
+                 }">
+                
+                <h3 class="text-2xl font-bold mb-6">📋 Primeiros Passos</h3>
+                
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span>Progresso</span>
+                        <span><span x-text="progress"></span>%</span>
+                    </div>
+                    <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300"
+                             :style="`width: ${progress}%`"></div>
+                    </div>
+                </div>
+                
+                <!-- Tasks -->
+                <div class="space-y-3">
+                    <template x-for="task in tasks" :key="task.id">
+                        <label class="flex items-center p-3 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                               :class="task.done ? 'opacity-60' : ''">
+                            <input type="checkbox" x-model="task.done" class="w-5 h-5 mr-4">
+                            <span :class="task.done ? 'line-through' : ''" x-text="task.text"></span>
+                        </label>
+                    </template>
+                </div>
+                
+                <div x-show="progress === 100" x-transition
+                     class="mt-6 p-4 bg-green-100 dark:bg-green-900/30 rounded-xl text-center">
+                    <div class="text-2xl mb-2">🎉</div>
+                    <p class="text-green-800 dark:text-green-300 font-semibold">
+                        Parabéns! Você está pronto para começar sua jornada!
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Cronograma Semanal -->
+            <div class="mt-12 glass-light dark:glass-dark rounded-3xl p-8 max-w-3xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6">⏰ Rotina Sugerida</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold mb-3">🌅 Segunda a Sexta</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between">
+                                <span>Manhã (1h)</span>
+                                <span class="text-gray-600 dark:text-gray-400">Teoria/Curso</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Tarde (2h)</span>
+                                <span class="text-gray-600 dark:text-gray-400">Prática/Código</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Noite (1h)</span>
+                                <span class="text-gray-600 dark:text-gray-400">Revisão/Git</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-3">🌟 Fim de Semana</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between">
+                                <span>Sábado (3h)</span>
+                                <span class="text-gray-600 dark:text-gray-400">Projeto pessoal</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Domingo (2h)</span>
+                                <span class="text-gray-600 dark:text-gray-400">Portfolio/LinkedIn</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Total/Semana</span>
+                                <strong>25 horas</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-blue-100 dark:bg-blue-900/30 rounded-xl">
+                    <p class="text-blue-800 dark:text-blue-300 text-sm">
+                        💡 <strong>Dica:</strong> Consistência > Intensidade. Melhor 1h todo dia que 8h no domingo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 10: Mensagem Final -->
+    <section id="section-10" class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">A Verdade Final</span>
+                </h1>
+            </div>
+            
+            <div class="glass-light dark:glass-dark rounded-3xl p-12 mb-12">
+                <blockquote class="text-2xl font-light mb-8 leading-relaxed">
+                    "O gap de 18 anos parece gigante,
+                    <br />
+                    mas com foco certo,
+                    <br />
+                    <span class="gradient-text">em 90 dias você alcança 2025.</span>"
+                </blockquote>
+                
+                <div class="space-y-4 text-lg text-gray-700 dark:text-gray-300">
+                    <p>Seu PHP de 2007 = Base sólida ✓</p>
+                    <p>TypeScript 2025 = Mesma lógica, sintaxe nova ✓</p>
+                    <p>IA como parceira = Acelera 10x o aprendizado ✓</p>
+                    <p>Simplicidade voltou = Bun, HTMX, Alpine ✓</p>
+                </div>
+            </div>
+            
+            <!-- Resumo das Escolhas -->
+            <div class="grid grid-cols-3 gap-6 mb-12">
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <div class="text-4xl mb-2">🚀</div>
+                    <h3 class="font-bold gradient-text">Se quer emprego</h3>
+                    <p class="text-sm mt-2">Trilha Fullstack</p>
+                </div>
+                
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <div class="text-4xl mb-2">🤖</div>
+                    <h3 class="font-bold gradient-text">Se quer futuro</h3>
+                    <p class="text-sm mt-2">Trilha IA</p>
+                </div>
+                
+                <div class="glass-light dark:glass-dark rounded-2xl p-6">
+                    <div class="text-4xl mb-2">⚡</div>
+                    <h3 class="font-bold gradient-text">Se quer paz</h3>
+                    <p class="text-sm mt-2">Trilha Simplicidade</p>
+                </div>
+            </div>
+            
+            <!-- Call to Action Final -->
+            <div class="space-y-6">
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    Não importa qual trilha escolher.
+                    <br />
+                    O importante é <span class="font-bold">começar hoje</span>.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button @click="scrollToSection(1)"
+                            class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:scale-105 transition-all">
+                        Rever o Guia
+                    </button>
+                    
+                    <a href="https://github.com" target="_blank"
+                       class="px-8 py-4 glass-light dark:glass-dark rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-all inline-block">
+                        Criar GitHub Agora
+                    </a>
+                </div>
+                
+                <div class="mt-12 text-gray-500 dark:text-gray-400 text-sm">
+                    <p>Esta apresentação foi feita com:</p>
+                    <p class="font-mono mt-2">Alpine.js + Tailwind CSS</p>
+                    <p class="text-green-500 mt-2">Zero React. Zero build. 100% funcional.</p>
+                    <p class="mt-4">Prova viva de que simplicidade funciona. 🎯</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8 z-50" x-data="{ showScrollTop: false }"
+         @scroll.window="showScrollTop = window.pageYOffset > 500">
+        <button x-show="showScrollTop" x-transition
+                @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
+    </div>
+ 

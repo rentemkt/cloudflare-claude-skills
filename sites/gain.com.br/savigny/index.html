@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise do Modelo de Negócio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.8em;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .model-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .model-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .model-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .features {
+            margin-bottom: 15px;
+        }
+        
+        .feature-item {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            color: #27ae60;
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+        
+        .warning-icon {
+            color: #e74c3c;
+        }
+        
+        .neutral-icon {
+            color: #95a5a6;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .legal {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .illegal {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .swot-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .swot-box {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .swot-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .swot-box ul {
+            list-style: none;
+        }
+        
+        .swot-box li {
+            padding: 5px 0;
+            font-size: 0.95em;
+        }
+        
+        .strengths {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        
+        .weaknesses {
+            background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+        }
+        
+        .opportunities {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .threats {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+        
+        .recommendation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .recommendation h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+        }
+        
+        .rec-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid white;
+        }
+        
+        .rec-item strong {
+            color: #ffd700;
+        }
+        
+        .path-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .path-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Análise do Modelo de Negócio</h1>
+        <p class="subtitle">Licurgo Premiações e Concorrentes no Mercado de Sorteios</p>
+        
+        <div class="section">
+            <h2>🎯 Visão Geral do Mercado</h2>
+            <div class="models-grid">
+                <div class="model-card">
+                    <h3><span class="model-icon">1</span> Licurgo Premiações</h3>
+                    <div class="features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Monetização:</strong> Venda direta de cotas (R$0,04 por chance)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Marketing:</strong> Redes sociais + programa de afiliados</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="warning-icon">⚠</span>
+                            <span><strong>Risco:</strong> Operação sem autorização SECAP/LOTEP</span>
+                        </div>
+                    </div>
+                    <span class="status-badge illegal">Irregular</span>
+                </div>
+                
+                <div class="model-card">
+                    <h3><span class="model-icon">2</span> Influenciadores (Wesley Safadão)</h3>
+                    <div class="features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Monetização:</strong> Cotas de patrocínio para empresas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Marketing:</strong> Viralização massiva no Instagram</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="warning-icon">⚠</span>
+                            <span><strong>Risco:</strong> Sem registro SECAP, multas possíveis</span>
+                        </div>
+                    </div>
+                    <span class="status-badge illegal">Irregular</span>
+                </div>
+                
+                <div class="model-card">
+                    <h3><span class="model-icon">3</span> Títulos de Capitalização</h3>
+                    <div class="features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Monetização:</strong> Venda autorizada SUSEP/LOTEP</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Marketing:</strong> TV/Rádio + apelo filantrópico</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><strong>Compliance:</strong> 100% regularizado e auditado</span>
+                        </div>
+                    </div>
+                    <span class="status-badge legal">Legalizado</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 Análise Comparativa</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>Licurgo Premiações</th>
+                            <th>Influenciadores</th>
+                            <th>Títulos Oficiais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Barreira de Entrada</strong></td>
+                            <td>Muito Baixa (R$0,04)</td>
+                            <td>Zero (Gratuito)</td>
+                            <td>Média (R$5-15)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alcance</strong></td>
+                            <td>Regional/Local</td>
+                            <td>Nacional/Massivo</td>
+                            <td>Regional/TV</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risco Legal</strong></td>
+                            <td>Alto ⚠️</td>
+                            <td>Alto ⚠️</td>
+                            <td>Zero ✅</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Credibilidade</strong></td>
+                            <td>Média-Baixa</td>
+                            <td>Dependente do Influencer</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Margem de Lucro</strong></td>
+                            <td>Variável (volume)</td>
+                            <td>Alta (patrocínios)</td>
+                            <td>Moderada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 Análise SWOT - Licurgo Premiações</h2>
+            <div class="swot-container">
+                <div class="swot-box strengths">
+                    <h4>💪 Forças</h4>
+                    <ul>
+                        <li>• Preços extremamente baixos</li>
+                        <li>• Agilidade operacional</li>
+                        <li>• Proximidade com público local</li>
+                        <li>• Calendário frequente de sorteios</li>
+                    </ul>
+                </div>
+                <div class="swot-box weaknesses">
+                    <h4>⚠️ Fraquezas</h4>
+                    <ul>
+                        <li>• Sem autorização legal</li>
+                        <li>• Dependência de alto volume</li>
+                        <li>• Credibilidade vulnerável</li>
+                        <li>• Risco de interrupção súbita</li>
+                    </ul>
+                </div>
+                <div class="swot-box opportunities">
+                    <h4>🚀 Oportunidades</h4>
+                    <ul>
+                        <li>• Migração para modelo legal</li>
+                        <li>• Parcerias com influencers</li>
+                        <li>• Profissionalização digital</li>
+                        <li>• Expansão regional</li>
+                    </ul>
+                </div>
+                <div class="swot-box threats">
+                    <h4>🔴 Ameaças</h4>
+                    <ul>
+                        <li>• Fiscalização e multas</li>
+                        <li>• Operações policiais</li>
+                        <li>• Concorrência legalizada</li>
+                        <li>• Saturação do mercado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🛤️ Caminhos Possíveis</h2>
+            
+            <div class="path-card">
+                <h3>Caminho A: Regularização Completa ✅</h3>
+                <p><strong>Passos necessários:</strong></p>
+                <ul>
+                    <li>1. Constituir empresa formal (CNPJ)</li>
+                    <li>2. Buscar parceria com seguradora autorizada pela SUSEP</li>
+                    <li>3. Criar título de capitalização filantrópico</li>
+                    <li>4. Obter autorização LOTEP (estadual)</li>
+                </ul>
+                <p><strong>Vantagens:</strong> Segurança jurídica total, maior credibilidade, acesso a publicidade tradicional</p>
+                <p><strong>Desvantagens:</strong> Custos operacionais maiores, burocracia, margens menores</p>
+            </div>
+            
+            <div class="arrow">↕</div>
+            
+            <div class="path-card">
+                <h3>Caminho B: Modelo Híbrido 🔄</h3>
+                <p><strong>Estratégia:</strong></p>
+                <ul>
+                    <li>• Manter operação digital ágil</li>
+                    <li>• Criar empresa separada para títulos oficiais</li>
+                    <li>• Usar marca Licurgo apenas para ações legalizadas</li>
+                    <li>• Migrar gradualmente a base de clientes</li>
+                </ul>
+                <p><strong>Vantagens:</strong> Transição suave, mantém agilidade, testa mercado</p>
+                <p><strong>Desvantagens:</strong> Complexidade operacional, risco residual</p>
+            </div>
+            
+            <div class="arrow">↕</div>
+            
+            <div class="path-card">
+                <h3>Caminho C: Pivô para Plataforma 💻</h3>
+                <p><strong>Modelo:</strong></p>
+                <ul>
+                    <li>• Transformar em marketplace de sorteios legalizados</li>
+                    <li>• Conectar organizadores autorizados com público</li>
+                    <li>• Monetizar via comissões e publicidade</li>
+                    <li>• Focar em tecnologia e experiência do usuário</li>
+                </ul>
+                <p><strong>Vantagens:</strong> Sem risco legal direto, escalável, asset-light</p>
+                <p><strong>Desvantagens:</strong> Mudança radical de modelo, nova competência necessária</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>❌ Principais Falhas Identificadas</h2>
+            <div class="models-grid">
+                <div class="model-card" style="border-left: 4px solid #e74c3c;">
+                    <h3 style="color: #e74c3c;">Falhas Legais</h3>
+                    <ul>
+                        <li>• Operação sem autorização SECAP/LOTEP</li>
+                        <li>• Caracterização como loteria ilegal (contravenção penal)</li>
+                        <li>• Risco de multas até 100% do valor dos prêmios</li>
+                        <li>• Possibilidade de responsabilização criminal</li>
+                    </ul>
+                </div>
+                
+                <div class="model-card" style="border-left: 4px solid #f39c12;">
+                    <h3 style="color: #f39c12;">Falhas Operacionais</h3>
+                    <ul>
+                        <li>• Dependência excessiva de volume para sustentabilidade</li>
+                        <li>• Ausência de auditoria externa</li>
+                        <li>• Falta de transparência em probabilidades</li>
+                        <li>• Gestão de risco financeiro inadequada</li>
+                    </ul>
+                </div>
+                
+                <div class="model-card" style="border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6;">Falhas de Mercado</h3>
+                    <ul>
+                        <li>• Credibilidade vulnerável a denúncias</li>
+                        <li>• Barreira de saída alta para clientes viciados</li>
+                        <li>• Competição desleal com operadores legalizados</li>
+                        <li>• Sustentabilidade questionável a longo prazo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recommendation">
+            <h2>🎯 Recomendação Final</h2>
+            
+            <div class="rec-item">
+                <strong>Decisão Estratégica Urgente:</strong>
+                <p>A Licurgo Premiações precisa tomar uma decisão imediata sobre sua legalização. O modelo atual é insustentável do ponto de vista jurídico e representa um risco existencial para o negócio.</p>
+            </div>
+            
+            <div class="rec-item">
+                <strong>Caminho Recomendado:</strong>
+                <p>Implementar o <strong>Caminho B (Modelo Híbrido)</strong> como estratégia de transição:</p>
+                <ul style="margin-top: 10px;">
+                    <li>✓ Criar imediatamente uma empresa formal separada</li>
+                    <li>✓ Buscar parceria com seguradora para títulos de capitalização</li>
+                    <li>✓ Manter a marca Licurgo forte enquanto regulariza operações</li>
+                    <li>✓ Migrar gradualmente a base de 500+ números por R$20 para títulos oficiais</li>
+                </ul>
+            </div>
+            
+            <div class="rec-item">
+                <strong>Ações Imediatas (Próximos 30 dias):</strong>
+                <ol style="margin-top: 10px;">
+                    <li>1. Consultar advogado especializado em direito de jogos e loterias</li>
+                    <li>2. Iniciar diálogo com LOTEP Paraíba sobre regularização</li>
+                    <li>3. Mapear parceiros potenciais (seguradoras autorizadas)</li>
+                    <li>4. Preparar comunicação transparente para base de clientes</li>
+                    <li>5. Desenvolver MVP de produto legalizado para teste</li>
+                </ol>
+            </div>
+            
+            <div class="rec-item">
+                <strong>Diferencial Competitivo Futuro:</strong>
+                <p>Combinar a <strong>agilidade digital e proximidade local</strong> (forças atuais) com <strong>segurança jurídica e credibilidade</strong> (necessidades do mercado). Ser a primeira "rifa digital 100% legalizada" do Nordeste pode se tornar uma vantagem competitiva única.</p>
+            </div>
+            
+            <div class="rec-item" style="background: rgba(255,215,0,0.2); border-left-color: #ffd700;">
+                <strong style="color: white;">⚡ Alerta Crítico:</strong>
+                <p>Cada dia de operação irregular aumenta o risco de intervenção das autoridades. A "Operação Sorte Grande" e investigações similares mostram que o setor está no radar da fiscalização. A regularização não é mais opcional - é questão de sobrevivência do negócio.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
