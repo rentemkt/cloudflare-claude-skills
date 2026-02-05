@@ -54,7 +54,25 @@ sites/
 │   ├── dieta/            # FitTracker Pro
 │   ├── isis/             # Atelier Isis
 │   └── rotina/           # Rotina Semanal
-└── gain.com.br/          # (pendente)
+└── gain.com.br/          # Projeto: gain-com-br
+    ├── index.html        # Pagina principal (em desenvolvimento)
+    ├── ec/               # Espaco Consciencia
+    ├── eco/              # Eco
+    ├── econ/             # Econ
+    ├── ecpro/            # Espaco Consciencia Pro
+    ├── ianews/           # IA News
+    ├── ic/               # IC
+    ├── ihering/          # Ihering
+    ├── ip/               # IP
+    ├── ipro/             # IPro
+    ├── isis/             # Isis
+    ├── pro/              # Pro
+    ├── pro2/             # Pro 2
+    ├── pro2a/            # Pro 2A
+    ├── proclean/         # Pro Clean
+    ├── proec/            # Pro EC
+    ├── savigny/          # Savigny
+    └── win/              # Win
 ```
 
 ### Deploy
@@ -65,9 +83,12 @@ O deploy e feito apontando o diretorio raiz do projeto Pages para a pasta do dom
 **Deploy manual via Wrangler:**
 ```bash
 wrangler pages deploy sites/ihering.com --project-name ihering-com
+wrangler pages deploy sites/gain.com.br --project-name gain-com-br
 ```
 
 ### URLs atuais (Pages)
+
+**ihering.com:**
 
 | Site | URL |
 |------|-----|
@@ -77,6 +98,24 @@ wrangler pages deploy sites/ihering.com --project-name ihering-com
 | /dieta | https://ihering-com.pages.dev/dieta |
 | /isis | https://ihering-com.pages.dev/isis |
 | /rotina | https://ihering-com.pages.dev/rotina |
+
+**gain.com.br:**
+
+| Site | URL |
+|------|-----|
+| gain.com.br (principal) | https://gain-com-br.pages.dev |
+| /ecpro | https://gain-com-br.pages.dev/ecpro |
+| /ipro | https://gain-com-br.pages.dev/ipro |
+| /ianews | https://gain-com-br.pages.dev/ianews |
+| /savigny | https://gain-com-br.pages.dev/savigny |
+| /pro | https://gain-com-br.pages.dev/pro |
+| /pro2 | https://gain-com-br.pages.dev/pro2 |
+| /win | https://gain-com-br.pages.dev/win |
+| /isis | https://gain-com-br.pages.dev/isis |
+| /ec | https://gain-com-br.pages.dev/ec |
+| /econ | https://gain-com-br.pages.dev/econ |
+| /ic | https://gain-com-br.pages.dev/ic |
+| /ip | https://gain-com-br.pages.dev/ip |
 
 ## Fonte
 
