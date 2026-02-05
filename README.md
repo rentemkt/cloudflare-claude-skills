@@ -41,6 +41,43 @@ Copie a pasta `.claude/skills/` para a raiz do seu projeto:
 cp -r .claude/skills /caminho/do/seu/projeto/.claude/
 ```
 
+## Sites Hospedados
+
+Estrutura de pastas para deploy no Cloudflare Pages:
+
+```
+sites/
+├── ihering.com/          # Projeto: ihering-com
+│   ├── index.html        # Pagina principal (em construcao)
+│   ├── renascer/         # Renascer depois do Amor
+│   ├── catolestudios/    # Catole Studios
+│   ├── dieta/            # FitTracker Pro
+│   ├── isis/             # Atelier Isis
+│   └── rotina/           # Rotina Semanal
+└── gain.com.br/          # (pendente)
+```
+
+### Deploy
+
+Cada pasta de dominio em `sites/` corresponde a um projeto no Cloudflare Pages.
+O deploy e feito apontando o diretorio raiz do projeto Pages para a pasta do dominio.
+
+**Deploy manual via Wrangler:**
+```bash
+wrangler pages deploy sites/ihering.com --project-name ihering-com
+```
+
+### URLs atuais (Pages)
+
+| Site | URL |
+|------|-----|
+| ihering.com (principal) | https://ihering-com.pages.dev |
+| /renascer | https://ihering-com.pages.dev/renascer |
+| /catolestudios | https://ihering-com.pages.dev/catolestudios |
+| /dieta | https://ihering-com.pages.dev/dieta |
+| /isis | https://ihering-com.pages.dev/isis |
+| /rotina | https://ihering-com.pages.dev/rotina |
+
 ## Fonte
 
 Skills baseadas no repositório oficial: https://github.com/cloudflare/skills
