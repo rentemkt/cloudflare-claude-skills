@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotina Semanal - Transformação com Equilíbrio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .nav-active {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold gradient-text">Rotina do Ihering</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#rotina" class="text-gray-700 hover:text-indigo-600 transition px-3 py-2 text-sm font-medium">Rotina</a>
+                    <a href="#treinos" class="text-gray-700 hover:text-indigo-600 transition px-3 py-2 text-sm font-medium">Treinos</a>
+                    <a href="#alimentacao" class="text-gray-700 hover:text-indigo-600 transition px-3 py-2 text-sm font-medium">Alimentação</a>
+                    <a href="#prep" class="text-gray-700 hover:text-indigo-600 transition px-3 py-2 text-sm font-medium">Prep</a>
+                    <a href="#metas" class="text-gray-700 hover:text-indigo-600 transition px-3 py-2 text-sm font-medium">Metas</a>
+                </div>
+                <button class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 gradient-bg overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center fade-in-up">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+                    Transformação com<br/>Equilíbrio e Saúde Mental
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+                    Cada dia é um passo • Valorize o progresso
+                </p>
+                <p class="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
+                    Uma rotina pensada em resultado perceptível, BARRIGA! A saúde mental está em bom horizonte. No consenso geral, buscamos resultados sem abrir mão da família, da sáude, do trabalho e do bem-estar
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#rotina" class="px-8 py-4 bg-white text-indigo-600 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                        Ver Minha Rotina
+                    </a>
+                    <a href="#metas" class="px-8 py-4 glass text-white rounded-full font-semibold hover:bg-white/20 transition">
+                        Minhas Metas
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F9FAFB"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Por que seguir esta rotina?</h2>
+                <p class="text-gray-600 text-lg">Resultados reais sem sacrificar o que importa</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 float">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tempo com a Família</h3>
+                    <p class="text-gray-600">Rotina que inclui momentos para brincar com os filhos, caminhar juntos e fortalecer os laços familiares</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 float" style="animation-delay: 0.2s">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Equilíbrio Real</h3>
+                    <p class="text-gray-600">Treino, trabalho, alimentação e descanso em harmonia. Sem extremos, apenas consistência</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 float" style="animation-delay: 0.4s">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Energia Sustentável</h3>
+                    <p class="text-gray-600">Alimentação balanceada e treinos inteligentes para ter energia o dia todo, sem exaustão</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rotina Diária -->
+    <section id="rotina" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Minha Rotina Diária</h2>
+                <p class="text-gray-600 text-lg">De segunda a sexta, um dia de cada vez</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Despertar -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-bold mb-4 gradient-text">Despertar</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">05:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Acordar</p>
+                                <p class="text-xs text-gray-600">+ Água gelada</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">05:35</span>
+                            <div>
+                                <p class="font-medium text-sm">Pré-treino</p>
+                                <p class="text-xs text-gray-600">Café + Banana</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">05:50</span>
+                            <div>
+                                <p class="font-medium text-sm">Academia</p>
+                                <p class="text-xs text-gray-600">45-50min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manhã -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-bold mb-4 gradient-text">Manhã</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">07:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Café</p>
+                                <p class="text-xs text-gray-600">2 Ovos + Cuscuz 80g</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">07:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Levar filho</p>
+                                <p class="text-xs text-gray-600">+ Ir pro trabalho</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">10:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Lanche</p>
+                                <p class="text-xs text-gray-600">Castanhas + Fruta</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">12:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Almoço</p>
+                                <p class="text-xs text-gray-600">Frango + Baião + Salada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarde -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-bold mb-4 gradient-text">Tarde</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">13:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Volta</p>
+                                <p class="text-xs text-gray-600">Trabalho</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">15:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Lanche</p>
+                                <p class="text-xs text-gray-600">Batata doce ou 2 Ovos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">17:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Saída</p>
+                                <p class="text-xs text-gray-600">Fim expediente</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">18:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Caminhada</p>
+                                <p class="text-xs text-gray-600">40-50min família</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Noite -->
+                <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 card-hover">
+                    <h3 class="text-lg font-bold mb-4 gradient-text">Noite</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">19:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Jantar</p>
+                                <p class="text-xs text-gray-600">Sopa ou Omelete</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">20:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Família</p>
+                                <p class="text-xs text-gray-600">Banho filho, brincar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">21:00</span>
+                            <div>
+                                <p class="font-medium text-sm">Casal</p>
+                                <p class="text-xs text-gray-600">Chá + Relaxar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-indigo-600 font-bold text-sm min-w-[50px]">22:30</span>
+                            <div>
+                                <p class="font-medium text-sm">Dormir</p>
+                                <p class="text-xs text-gray-600">7 horas de sono</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treinos -->
+    <section id="treinos" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Grade de Treinos</h2>
+                <p class="text-gray-600 text-lg">6 dias de treino, 1 de descanso e prep</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Segunda</p>
+                        <p class="text-2xl font-bold mb-1">💪</p>
+                        <p class="text-sm font-medium">Superior</p>
+                        <p class="text-xs mt-2 opacity-90">Peito, Costas<br/>Ombros, Braços</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Terça</p>
+                        <p class="text-2xl font-bold mb-1">🦵</p>
+                        <p class="text-sm font-medium">Inferior</p>
+                        <p class="text-xs mt-2 opacity-90">Pernas +<br/>Abdômen</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Quarta</p>
+                        <p class="text-2xl font-bold mb-1">🏃</p>
+                        <p class="text-sm font-medium">Cardio</p>
+                        <p class="text-xs mt-2 opacity-90">30min<br/>Esteira/Bike</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Quinta</p>
+                        <p class="text-2xl font-bold mb-1">💪</p>
+                        <p class="text-sm font-medium">Superior</p>
+                        <p class="text-xs mt-2 opacity-90">Peito, Costas<br/>Ombros, Braços</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Sexta</p>
+                        <p class="text-2xl font-bold mb-1">🦵</p>
+                        <p class="text-sm font-medium">Inferior</p>
+                        <p class="text-xs mt-2 opacity-90">Pernas +<br/>Abdômen</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover gradient-bg">
+                    <div class="text-white">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Sábado</p>
+                        <p class="text-2xl font-bold mb-1">🔥</p>
+                        <p class="text-sm font-medium">Full Body</p>
+                        <p class="text-xs mt-2 opacity-90">Circuito<br/>30min</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg card-hover border-2 border-indigo-200">
+                    <div class="text-gray-700">
+                        <p class="text-xs font-bold mb-2 uppercase tracking-wider">Domingo</p>
+                        <p class="text-2xl font-bold mb-1">😌</p>
+                        <p class="text-sm font-medium">Descanso</p>
+                        <p class="text-xs mt-2">Prep das<br/>Marmitas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alimentação -->
+    <section id="alimentacao" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Alimentação Balanceada</h2>
+                <p class="text-gray-600 text-lg">6 refeições por dia, simples e nutritivas</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Café -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">☕</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">07:00</p>
+                            <h3 class="text-lg font-bold">Café da Manhã</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">300-400 calorias</p>
+                    <p class="text-sm text-gray-700">2 Ovos + Cuscuz 80g + Café</p>
+                </div>
+
+                <!-- Lanche Manhã -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🥜</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">10:00</p>
+                            <h3 class="text-lg font-bold">Lanche Manhã</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">100-150 calorias</p>
+                    <p class="text-sm text-gray-700">Castanhas 20g + Fruta da época</p>
+                </div>
+
+                <!-- Almoço -->
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🍗</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">12:30</p>
+                            <h3 class="text-lg font-bold">Almoço</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">400-500 calorias</p>
+                    <p class="text-sm text-gray-700">Frango 150g + Baião/Macaxeira + Salada à vontade</p>
+                </div>
+
+                <!-- Lanche Tarde -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🍠</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">15:30</p>
+                            <h3 class="text-lg font-bold">Lanche Tarde</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">100-150 calorias</p>
+                    <p class="text-sm text-gray-700">Batata doce 100g ou 2 Ovos cozidos</p>
+                </div>
+
+                <!-- Jantar -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🥣</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">19:00</p>
+                            <h3 class="text-lg font-bold">Jantar</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">350-450 calorias</p>
+                    <p class="text-sm text-gray-700">Sopa com Frango ou Omelete + Salada grande</p>
+                </div>
+
+                <!-- Ceia -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🍵</span>
+                        <div>
+                            <p class="text-xs text-indigo-600 font-bold">21:00</p>
+                            <h3 class="text-lg font-bold">Ceia (opcional)</h3>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">100 calorias</p>
+                    <p class="text-sm text-gray-700">Chá + 2 Torradas integrais</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prep Domingo -->
+    <section id="prep" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Prep de Domingo</h2>
+                <p class="text-gray-600 text-lg">2 horas que salvam sua semana inteira</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold mb-6 gradient-text">Cozinhar</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">2kg Frango (grelhar e desfiar)</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">12 Ovos cozidos</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">1kg Batata doce</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">Feijão para 3 dias</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">2 Panelas de Sopa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-bold mb-6 gradient-text">Organizar</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">Separar marmitas em potes</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">Lavar e picar saladas</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">Porções de castanhas em saquinhos</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-6 h-6 rounded-full border-2 border-indigo-600 flex-shrink-0"></div>
+                            <p class="text-gray-700">Garrafas de água no freezer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metas -->
+    <section id="metas" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Minhas Metas</h2>
+                <p class="text-gray-600 text-lg">Números realistas para acompanhar o progresso</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="gradient-bg rounded-2xl p-8 text-center text-white card-hover">
+                    <p class="text-5xl font-bold mb-2">1700</p>
+                    <p class="text-sm uppercase tracking-wider opacity-90">Calorias/Dia</p>
+                </div>
+                <div class="gradient-bg rounded-2xl p-8 text-center text-white card-hover">
+                    <p class="text-5xl font-bold mb-2">140g</p>
+                    <p class="text-sm uppercase tracking-wider opacity-90">Proteína/Dia</p>
+                </div>
+                <div class="gradient-bg rounded-2xl p-8 text-center text-white card-hover">
+                    <p class="text-5xl font-bold mb-2">500</p>
+                    <p class="text-sm uppercase tracking-wider opacity-90">Cal Queimadas/Dia</p>
+                </div>
+                <div class="gradient-bg rounded-2xl p-8 text-center text-white card-hover">
+                    <p class="text-5xl font-bold mb-2">-1kg</p>
+                    <p class="text-sm uppercase tracking-wider opacity-90">Meta Semanal</p>
+                </div>
+            </div>
+            <div class="mt-12 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 text-center">
+                <p class="text-2xl font-bold gradient-text mb-4">Projeção em 8 Semanas</p>
+                <div class="grid md:grid-cols-3 gap-6 mt-6">
+                    <div>
+                        <p class="text-4xl font-bold text-indigo-600 mb-2">-8kg</p>
+                        <p class="text-gray-600">Perda de peso saudável</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-indigo-600 mb-2">+30%</p>
+                        <p class="text-gray-600">Mais energia diária</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-indigo-600 mb-2">100%</p>
+                        <p class="text-gray-600">Mais tempo com família</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 px-4 gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Cada dia é um passo
+            </h2>
+            <p class="text-xl text-white/90 mb-8">
+                Valorize o progresso, não a perfeição
+            </p>
+            <p class="text-lg text-white/80 mb-12 max-w-2xl mx-auto">
+                Esta rotina foi feita pensando no equilíbrio entre saúde, trabalho e família.<br/>
+                Siga no seu ritmo e celebre cada pequena conquista.
+            </p>
+            <a href="#rotina" class="inline-block px-8 py-4 bg-white text-indigo-600 rounded-full font-semibold hover:shadow-2xl transition transform hover:scale-105">
+                Ver Rotina Novamente
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-4">Minha Rotina</h3>
+            <p class="text-gray-400 mb-6">Transformação com Equilíbrio e Saúde</p>
+            <p class="text-sm text-gray-500">
+                Criado com dedicação • Seguido com consistência • Vivido com equilíbrio
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Destacar item ativo no menu
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLink?.classList.add('nav-active');
+                } else {
+                    navLink?.classList.remove('nav-active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

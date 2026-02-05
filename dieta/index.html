@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>FitTracker Pro | Seu Plano Personalizado</title>
+    <meta name="description" content="Sistema ultra-otimizado de tracking nutricional e exercícios">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --border: #262626;
+            --text-primary: #ededed;
+            --text-secondary: #a1a1a1;
+            --text-tertiary: #737373;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.25);
+            --radius: 0.75rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-tertiary: #f5f5f5;
+            --border: #e5e5e5;
+            --text-primary: #171717;
+            --text-secondary: #525252;
+            --text-tertiary: #a3a3a3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(17, 17, 17, 0.85);
+        }
+
+        [data-theme="light"] header {
+            background: rgba(250, 250, 250, 0.85);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            color: var(--accent);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* Schedule Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.45rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--bg-primary);
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Meal Cards */
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .meal-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .meal-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .meal-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meal-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .meal-time {
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+        }
+
+        .meal-content {
+            padding: 1rem;
+        }
+
+        .meal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meal-item:last-child {
+            border-bottom: none;
+        }
+
+        .meal-item-name {
+            font-size: 0.875rem;
+        }
+
+        .meal-item-calories {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+        }
+
+        .meal-footer {
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .meal-total {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .meal-action {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Exercise Cards */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .exercise-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .exercise-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .exercise-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .exercise-details {
+            flex: 1;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .exercise-info {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .exercise-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .exercise-status.completed {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .exercise-status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* Progress Ring */
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
+        .progress-ring-circle {
+            stroke: var(--border);
+            fill: transparent;
+            stroke-width: 8;
+        }
+
+        .progress-ring-progress {
+            stroke: var(--accent);
+            fill: transparent;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-text {
+            text-anchor: middle;
+            font-size: 1.5rem;
+            font-weight: 700;
+            fill: var(--text-primary);
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 50;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 200;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .meal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                overflow-x: auto;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .fab {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Loading State */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--border) 50%, var(--bg-tertiary) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 300;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast-error {
+            border-left: 4px solid var(--danger);
+        }
+
+        /* Charts Container */
+        .chart-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                    <span>FitTracker Pro</span>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-ghost btn-icon" onclick="toggleTheme()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-primary" onclick="openModal('add-meal')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar alimentos, exercícios ou refeições..." onkeyup="searchDatabase(event)">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Calorias Hoje</div>
+                <div class="stat-value">1,247</div>
+                <div class="stat-change positive">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    </svg>
+                    <span>Meta: 1,600</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Proteínas</div>
+                <div class="stat-value">98g</div>
+                <div class="stat-change positive">
+                    <span>73% da meta</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Exercícios</div>
+                <div class="stat-value">45min</div>
+                <div class="stat-change positive">
+                    <span>Academia + Caminhada</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">IMC Atual</div>
+                <div class="stat-value">28.5</div>
+                <div class="stat-change negative">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                    </svg>
+                    <span>-1.5 desde início</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('hoje')">Hoje</button>
+            <button class="tab" onclick="switchTab('plano')">Plano Semanal</button>
+            <button class="tab" onclick="switchTab('alimentos')">Banco de Alimentos</button>
+            <button class="tab" onclick="switchTab('exercicios')">Exercícios</button>
+            <button class="tab" onclick="switchTab('progresso')">Progresso</button>
+        </div>
+
+        <!-- Tab Content: Hoje -->
+        <div id="tab-hoje" class="tab-content">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">05:30</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                            Pré-treino
+                        </div>
+                        <div class="timeline-description">Café preto + Banana (95 kcal)</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">05:50</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+                            </svg>
+                            Academia - Treino Superior
+                        </div>
+                        <div class="timeline-description">Peito, costas, ombros (45 min)</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">07:00</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z"/>
+                            </svg>
+                            Café da Manhã
+                        </div>
+                        <div class="timeline-description">2 ovos + cuscuz 80g + café (320 kcal)</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Lanche</div>
+                        <div class="timeline-description">Castanha de caju 20g (110 kcal)</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:30</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Almoço</div>
+                        <div class="timeline-description">Frango 150g + Baião + Salada (450 kcal)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Plano Semanal (hidden by default) -->
+        <div id="tab-plano" class="tab-content" style="display: none;">
+            <div class="meal-grid">
+                <div class="meal-card" onclick="expandMeal(this)">
+                    <div class="meal-header">
+                        <div class="meal-title">Segunda-feira</div>
+                        <div class="meal-time">Total: 1,600 kcal</div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="meal-item">
+                            <span class="meal-item-name">Café da Manhã</span>
+                            <span class="meal-item-calories">320 kcal</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Lanche Manhã</span>
+                            <span class="meal-item-calories">110 kcal</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Almoço</span>
+                            <span class="meal-item-calories">450 kcal</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Lanche Tarde</span>
+                            <span class="meal-item-calories">120 kcal</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Jantar</span>
+                            <span class="meal-item-calories">380 kcal</span>
+                        </div>
+                    </div>
+                    <div class="meal-footer">
+                        <span class="meal-total">Proteínas: 135g</span>
+                        <a href="#" class="meal-action">Ver detalhes →</a>
+                    </div>
+                </div>
+                <!-- Repeat for other days -->
+            </div>
+        </div>
+
+        <!-- Tab Content: Banco de Alimentos -->
+        <div id="tab-alimentos" class="tab-content" style="display: none;">
+            <div class="meal-grid" id="food-database">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Tab Content: Exercícios -->
+        <div id="tab-exercicios" class="tab-content" style="display: none;">
+            <div class="exercise-list" id="exercise-database">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Tab Content: Progresso -->
+        <div id="tab-progresso" class="tab-content" style="display: none;">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Evolução do Peso</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: var(--accent);"></span>
+                            <span>Peso</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: var(--info);"></span>
+                            <span>Meta</span>
+                        </div>
+                    </div>
+                </div>
+                <svg class="progress-ring" viewBox="0 0 120 120">
+                    <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                    <circle class="progress-ring-progress" stroke-width="8" stroke-dasharray="327 327" stroke-dashoffset="82" fill="transparent" r="52" cx="60" cy="60"/>
+                    <text class="progress-text" x="60" y="65">75%</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="quickAdd()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Adicionar Refeição</h2>
+                <button class="btn btn-ghost btn-icon" onclick="closeModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Tipo de Refeição</label>
+                    <select class="form-input">
+                        <option>Café da Manhã</option>
+                        <option>Lanche Manhã</option>
+                        <option>Almoço</option>
+                        <option>Lanche Tarde</option>
+                        <option>Jantar</option>
+                        <option>Ceia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alimento</label>
+                    <input type="text" class="form-input" placeholder="Digite para buscar...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Quantidade (g)</label>
+                    <input type="number" class="form-input" placeholder="100">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary">Adicionar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast toast-success" id="toast">
+        <span id="toast-message">Refeição adicionada com sucesso!</span>
+    </div>
+
+    <script>
+        // Database
+        const database = {
+            foods: [
+                { id: 1, name: "Cuscuz", calories: 113, protein: 2.2, carbs: 25, fat: 0.2, portion: 100, category: "carboidrato" },
+                { id: 2, name: "Ovo cozido", calories: 155, protein: 13, carbs: 1.1, fat: 11, portion: 100, category: "proteina" },
+                { id: 3, name: "Frango grelhado", calories: 165, protein: 31, carbs: 0, fat: 3.6, portion: 100, category: "proteina" },
+                { id: 4, name: "Carne de sol magra", calories: 240, protein: 36, carbs: 0, fat: 10, portion: 100, category: "proteina" },
+                { id: 5, name: "Queijo coalho", calories: 330, protein: 22, carbs: 3, fat: 26, portion: 100, category: "proteina" },
+                { id: 6, name: "Tapioca", calories: 288, protein: 0.5, carbs: 70, fat: 0.2, portion: 100, category: "carboidrato" },
+                { id: 7, name: "Macaxeira", calories: 125, protein: 1.5, carbs: 30, fat: 0.3, portion: 100, category: "carboidrato" },
+                { id: 8, name: "Feijão carioca", calories: 76, protein: 4.8, carbs: 14, fat: 0.5, portion: 100, category: "carboidrato" },
+                { id: 9, name: "Arroz integral", calories: 124, protein: 2.6, carbs: 26, fat: 1, portion: 100, category: "carboidrato" },
+                { id: 10, name: "Banana prata", calories: 98, protein: 1.3, carbs: 26, fat: 0.1, portion: 100, category: "fruta" },
+                { id: 11, name: "Goiaba", calories: 54, protein: 1.1, carbs: 13, fat: 0.4, portion: 100, category: "fruta" },
+                { id: 12, name: "Castanha de caju", calories: 556, protein: 18, carbs: 30, fat: 44, portion: 100, category: "oleaginosa" },
+                { id: 13, name: "Batata doce", calories: 118, protein: 1.2, carbs: 28, fat: 0.1, portion: 100, category: "carboidrato" },
+                { id: 14, name: "Jerimum", calories: 26, protein: 1, carbs: 7, fat: 0.1, portion: 100, category: "legume" },
+                { id: 15, name: "Tilápia", calories: 128, protein: 26, carbs: 0, fat: 2.7, portion: 100, category: "proteina" },
+                { id: 16, name: "Leite desnatado", calories: 35, protein: 3.4, carbs: 5, fat: 0.1, portion: 100, category: "laticinios" },
+                { id: 17, name: "Iogurte natural", calories: 61, protein: 3.5, carbs: 4.7, fat: 3.3, portion: 100, category: "laticinios" },
+                { id: 18, name: "Aveia", calories: 394, protein: 14, carbs: 67, fat: 8, portion: 100, category: "carboidrato" },
+                { id: 19, name: "Pão integral", calories: 247, protein: 13, carbs: 41, fat: 3.4, portion: 100, category: "carboidrato" },
+                { id: 20, name: "Café preto", calories: 2, protein: 0.1, carbs: 0.3, fat: 0, portion: 100, category: "bebida" },
+                { id: 21, name: "Alface", calories: 15, protein: 1.4, carbs: 2.9, fat: 0.2, portion: 100, category: "verdura" },
+                { id: 22, name: "Tomate", calories: 18, protein: 0.9, carbs: 3.9, fat: 0.2, portion: 100, category: "legume" },
+                { id: 23, name: "Cebola", calories: 40, protein: 1.1, carbs: 9.3, fat: 0.1, portion: 100, category: "legume" },
+                { id: 24, name: "Couve", calories: 27, protein: 2.9, carbs: 4.3, fat: 0.5, portion: 100, category: "verdura" },
+                { id: 25, name: "Maxixe", calories: 14, protein: 1.4, carbs: 2.7, fat: 0.1, portion: 100, category: "legume" },
+                { id: 26, name: "Quiabo", calories: 30, protein: 1.9, carbs: 6.4, fat: 0.1, portion: 100, category: "legume" },
+                { id: 27, name: "Chuchu", calories: 19, protein: 0.7, carbs: 4.5, fat: 0.1, portion: 100, category: "legume" },
+                { id: 28, name: "Cenoura", calories: 41, protein: 0.9, carbs: 10, fat: 0.2, portion: 100, category: "legume" },
+                { id: 29, name: "Laranja", calories: 47, protein: 0.9, carbs: 12, fat: 0.1, portion: 100, category: "fruta" },
+                { id: 30, name: "Caju", calories: 46, protein: 0.2, carbs: 11, fat: 0.6, portion: 100, category: "fruta" }
+            ],
+            exercises: [
+                { id: 1, name: "Supino reto", type: "peito", sets: 3, reps: "8-12", calories: 8, difficulty: "intermediário" },
+                { id: 2, name: "Supino inclinado", type: "peito", sets: 3, reps: "8-12", calories: 7, difficulty: "intermediário" },
+                { id: 3, name: "Puxada frontal", type: "costas", sets: 3, reps: "8-12", calories: 6, difficulty: "iniciante" },
+                { id: 4, name: "Remada curvada", type: "costas", sets: 3, reps: "8-12", calories: 8, difficulty: "intermediário" },
+                { id: 5, name: "Desenvolvimento", type: "ombros", sets: 3, reps: "8-12", calories: 6, difficulty: "intermediário" },
+                { id: 6, name: "Elevação lateral", type: "ombros", sets: 3, reps: "12-15", calories: 4, difficulty: "iniciante" },
+                { id: 7, name: "Rosca direta", type: "bíceps", sets: 3, reps: "10-12", calories: 5, difficulty: "iniciante" },
+                { id: 8, name: "Tríceps testa", type: "tríceps", sets: 3, reps: "10-12", calories: 5, difficulty: "iniciante" },
+                { id: 9, name: "Agachamento", type: "pernas", sets: 4, reps: "8-12", calories: 12, difficulty: "intermediário" },
+                { id: 10, name: "Leg press", type: "pernas", sets: 4, reps: "10-15", calories: 10, difficulty: "iniciante" },
+                { id: 11, name: "Extensora", type: "pernas", sets: 3, reps: "12-15", calories: 6, difficulty: "iniciante" },
+                { id: 12, name: "Flexora", type: "pernas", sets: 3, reps: "12-15", calories: 5, difficulty: "iniciante" },
+                { id: 13, name: "Panturrilha", type: "pernas", sets: 4, reps: "15-20", calories: 4, difficulty: "iniciante" },
+                { id: 14, name: "Prancha", type: "core", sets: 3, reps: "30-60s", calories: 3, difficulty: "iniciante" },
+                { id: 15, name: "Abdominal", type: "core", sets: 3, reps: "15-20", calories: 4, difficulty: "iniciante" },
+                { id: 16, name: "Caminhada", type: "cardio", sets: 1, reps: "30-45min", calories: 150, difficulty: "iniciante" },
+                { id: 17, name: "Corrida", type: "cardio", sets: 1, reps: "20-30min", calories: 250, difficulty: "intermediário" },
+                { id: 18, name: "Bike", type: "cardio", sets: 1, reps: "30-45min", calories: 200, difficulty: "iniciante" },
+                { id: 19, name: "Flexão", type: "peito", sets: 3, reps: "10-15", calories: 5, difficulty: "iniciante" },
+                { id: 20, name: "Barra fixa", type: "costas", sets: 3, reps: "5-10", calories: 7, difficulty: "avançado" }
+            ],
+            meals: [],
+            dailyLog: []
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFoodDatabase();
+            loadExerciseDatabase();
+            updateProgress();
+            setInterval(updateTime, 60000); // Update time every minute
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(`tab-${tabName}`).style.display = 'block';
+        }
+
+        // Load Food Database
+        function loadFoodDatabase() {
+            const container = document.getElementById('food-database');
+            if (!container) return;
+            
+            container.innerHTML = database.foods.map(food => `
+                <div class="meal-card" onclick="addFood(${food.id})">
+                    <div class="meal-header">
+                        <div class="meal-title">${food.name}</div>
+                        <div class="meal-time">${food.category}</div>
+                    </div>
+                    <div class="meal-content">
+                        <div class="meal-item">
+                            <span class="meal-item-name">Calorias</span>
+                            <span class="meal-item-calories">${food.calories} kcal</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Proteína</span>
+                            <span class="meal-item-calories">${food.protein}g</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Carbos</span>
+                            <span class="meal-item-calories">${food.carbs}g</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="meal-item-name">Gordura</span>
+                            <span class="meal-item-calories">${food.fat}g</span>
+                        </div>
+                    </div>
+                    <div class="meal-footer">
+                        <span class="meal-total">Por 100g</span>
+                        <a href="#" class="meal-action">Adicionar →</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load Exercise Database
+        function loadExerciseDatabase() {
+            const container = document.getElementById('exercise-database');
+            if (!container) return;
+            
+            container.innerHTML = database.exercises.map(exercise => `
+                <div class="exercise-card">
+                    <div class="exercise-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+                        </svg>
+                    </div>
+                    <div class="exercise-details">
+                        <div class="exercise-name">${exercise.name}</div>
+                        <div class="exercise-info">
+                            <span>${exercise.sets} séries</span>
+                            <span>${exercise.reps}</span>
+                            <span>${exercise.calories} kcal/série</span>
+                            <span>${exercise.difficulty}</span>
+                        </div>
+                    </div>
+                    <div class="exercise-status pending">
+                        ${exercise.type}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Search Functionality
+        function searchDatabase(event) {
+            const query = event.target.value.toLowerCase();
+            
+            if (query.length < 2) {
+                loadFoodDatabase();
+                return;
+            }
+            
+            const filteredFoods = database.foods.filter(food => 
+                food.name.toLowerCase().includes(query) ||
+                food.category.toLowerCase().includes(query)
+            );
+            
+            const container = document.getElementById('food-database');
+            if (container && container.parentElement.style.display !== 'none') {
+                container.innerHTML = filteredFoods.map(food => `
+                    <div class="meal-card" onclick="addFood(${food.id})">
+                        <div class="meal-header">
+                            <div class="meal-title">${food.name}</div>
+                            <div class="meal-time">${food.category}</div>
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-item">
+                                <span class="meal-item-name">Calorias</span>
+                                <span class="meal-item-calories">${food.calories} kcal</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Modal Functions
+        function openModal(type) {
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.className = `toast toast-${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Quick Add Function
+        function quickAdd() {
+            openModal('add-meal');
+        }
+
+        // Add Food to Log
+        function addFood(foodId) {
+            const food = database.foods.find(f => f.id === foodId);
+            if (food) {
+                database.dailyLog.push({
+                    ...food,
+                    timestamp: new Date().toISOString(),
+                    meal: 'snack'
+                });
+                showToast(`${food.name} adicionado!`);
+                updateProgress();
+            }
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const totalCalories = database.dailyLog.reduce((sum, item) => sum + item.calories, 0);
+            const totalProtein = database.dailyLog.reduce((sum, item) => sum + item.protein, 0);
+            
+            // Update stats cards
+            const statsValues = document.querySelectorAll('.stat-value');
+            if (statsValues[0]) statsValues[0].textContent = totalCalories;
+            if (statsValues[1]) statsValues[1].textContent = Math.round(totalProtein) + 'g';
+        }
+
+        // Update Time
+        function updateTime() {
+            const now = new Date();
+            const timeElements = document.querySelectorAll('.timeline-time');
+            // Update current time indicator
+        }
+
+        // Expand Meal Card
+        function expandMeal(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // PWA - Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>
