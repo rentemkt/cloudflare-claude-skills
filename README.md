@@ -91,7 +91,7 @@ wrangler pages deploy sites/gain.com.br --project-name gain-com-br --branch main
 | dieta | dieta-a1s.pages.dev | dieta.ihering.com | FitTracker Pro |
 | catolestudios | catolestudios.pages.dev | catolestudios.ihering.com | Catole Studios |
 | rotina | rotina-6qt.pages.dev | rotina.ihering.com | Rotina Semanal |
-| gain-com-br | gain-com-br.pages.dev | (pendente) | Todos os sites gain.com.br |
+| gain-com-br | gain-com-br.pages.dev | gain.com.br, www.gain.com.br | Todos os sites gain.com.br |
 
 ### DNS (ihering.com)
 
@@ -104,6 +104,34 @@ wrangler pages deploy sites/gain.com.br --project-name gain-com-br --branch main
 | CNAME | dieta.ihering.com | dieta-a1s.pages.dev |
 | CNAME | catolestudios.ihering.com | catolestudios.pages.dev |
 | CNAME | rotina.ihering.com | rotina-6qt.pages.dev |
+
+### DNS (gain.com.br)
+
+| Tipo | Nome | Destino |
+|------|------|---------|
+| CNAME | gain.com.br | gain-com-br.pages.dev |
+| CNAME | www.gain.com.br | gain.com.br |
+| MX | gain.com.br | route1.mx.cloudflare.net (prio 59) |
+| MX | gain.com.br | route2.mx.cloudflare.net (prio 5) |
+| MX | gain.com.br | route3.mx.cloudflare.net (prio 87) |
+| TXT | gain.com.br | v=spf1 include:_spf.mx.cloudflare.net ~all |
+| TXT | cf2024-1._domainkey.gain.com.br | DKIM (RSA) |
+
+### Email Routing (gain.com.br)
+
+Cloudflare Email Routing (gratuito) encaminha emails para Gmail:
+
+| Email | Destino | Status |
+|-------|---------|--------|
+| ihering@gain.com.br | ihering45@gmail.com | Ativo |
+| iohan@gain.com.br | ihering45@gmail.com | Ativo |
+
+### Nameservers
+
+| Dominio | NS1 | NS2 | Status |
+|---------|-----|-----|--------|
+| ihering.com | lilyana.ns.cloudflare.com | pranab.ns.cloudflare.com | Active |
+| gain.com.br | chad.ns.cloudflare.com | magnolia.ns.cloudflare.com | Pending |
 
 ## Fonte
 
