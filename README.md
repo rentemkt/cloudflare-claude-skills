@@ -47,75 +47,63 @@ Estrutura de pastas para deploy no Cloudflare Pages:
 
 ```
 sites/
-├── ihering.com/          # Projeto: ihering-com
+├── ihering.com/          # Projeto: ihering-com (pagina principal + _redirects)
 │   ├── index.html        # Pagina principal (em construcao)
-│   ├── renascer/         # Renascer depois do Amor
-│   ├── catolestudios/    # Catole Studios
-│   ├── dieta/            # FitTracker Pro
-│   ├── isis/             # Atelier Isis
-│   └── rotina/           # Rotina Semanal
-└── gain.com.br/          # Projeto: gain-com-br
+│   └── _redirects        # Redirects /isis/* -> isis.ihering.com, etc.
+└── gain.com.br/          # Projeto: gain-com-br (site unico com subpastas)
     ├── index.html        # Pagina principal (em desenvolvimento)
-    ├── ec/               # Espaco Consciencia
-    ├── eco/              # Eco
-    ├── econ/             # Econ
-    ├── ecpro/            # Espaco Consciencia Pro
-    ├── ianews/           # IA News
-    ├── ic/               # IC
-    ├── ihering/          # Ihering
-    ├── ip/               # IP
-    ├── ipro/             # IPro
-    ├── isis/             # Isis
-    ├── pro/              # Pro
-    ├── pro2/             # Pro 2
-    ├── pro2a/            # Pro 2A
-    ├── proclean/         # Pro Clean
-    ├── proec/            # Pro EC
-    ├── savigny/          # Savigny
-    └── win/              # Win
+    ├── ec/, eco/, econ/   # Espaco Consciencia (versoes)
+    ├── ecpro/, ic/        # EC Pro, IC
+    ├── ianews/            # IA News
+    ├── ip/, ipro/         # IP, IPro
+    ├── isis/, ihering/    # Isis, Ihering
+    ├── pro/, pro2/, pro2a/ # Pro (versoes)
+    ├── proclean/, proec/  # Pro Clean, Pro EC
+    ├── savigny/           # Savigny
+    └── win/               # Win
 ```
+
+### Arquitetura
+
+**ihering.com** usa uma arquitetura com projeto principal + subdominos:
+- `ihering-com` (Pages) = pagina "em construcao" + `_redirects` que redireciona paths para subdominos
+- Cada site individual tem seu proprio projeto Pages com custom domain no subdominio
+- Acesso via `ihering.com/isis` faz redirect 301 para `isis.ihering.com`
+- Evita conteudo duplicado e deploys desnecessarios
+
+**gain.com.br** usa deploy unico com todas as subpastas no mesmo projeto.
 
 ### Deploy
 
-Cada pasta de dominio em `sites/` corresponde a um projeto no Cloudflare Pages.
-O deploy e feito apontando o diretorio raiz do projeto Pages para a pasta do dominio.
-
 **Deploy manual via Wrangler:**
 ```bash
-wrangler pages deploy sites/ihering.com --project-name ihering-com
-wrangler pages deploy sites/gain.com.br --project-name gain-com-br
+wrangler pages deploy sites/ihering.com --project-name ihering-com --branch main
+wrangler pages deploy sites/gain.com.br --project-name gain-com-br --branch main
 ```
 
-### URLs atuais (Pages)
+### Projetos Cloudflare Pages
 
-**ihering.com:**
+| Projeto | Pages URL | Custom Domain | Conteudo |
+|---------|-----------|---------------|----------|
+| ihering-com | ihering-com.pages.dev | ihering.com, www.ihering.com | Pagina em construcao + redirects |
+| isis | isis-8y1.pages.dev | isis.ihering.com | Atelier Isis |
+| renascer | renascer-6ok.pages.dev | renascer.ihering.com | Renascer depois do Amor |
+| dieta | dieta-a1s.pages.dev | dieta.ihering.com | FitTracker Pro |
+| catolestudios | catolestudios.pages.dev | catolestudios.ihering.com | Catole Studios |
+| rotina | rotina-6qt.pages.dev | rotina.ihering.com | Rotina Semanal |
+| gain-com-br | gain-com-br.pages.dev | (pendente) | Todos os sites gain.com.br |
 
-| Site | URL |
-|------|-----|
-| ihering.com (principal) | https://ihering-com.pages.dev |
-| /renascer | https://ihering-com.pages.dev/renascer |
-| /catolestudios | https://ihering-com.pages.dev/catolestudios |
-| /dieta | https://ihering-com.pages.dev/dieta |
-| /isis | https://ihering-com.pages.dev/isis |
-| /rotina | https://ihering-com.pages.dev/rotina |
+### DNS (ihering.com)
 
-**gain.com.br:**
-
-| Site | URL |
-|------|-----|
-| gain.com.br (principal) | https://gain-com-br.pages.dev |
-| /ecpro | https://gain-com-br.pages.dev/ecpro |
-| /ipro | https://gain-com-br.pages.dev/ipro |
-| /ianews | https://gain-com-br.pages.dev/ianews |
-| /savigny | https://gain-com-br.pages.dev/savigny |
-| /pro | https://gain-com-br.pages.dev/pro |
-| /pro2 | https://gain-com-br.pages.dev/pro2 |
-| /win | https://gain-com-br.pages.dev/win |
-| /isis | https://gain-com-br.pages.dev/isis |
-| /ec | https://gain-com-br.pages.dev/ec |
-| /econ | https://gain-com-br.pages.dev/econ |
-| /ic | https://gain-com-br.pages.dev/ic |
-| /ip | https://gain-com-br.pages.dev/ip |
+| Tipo | Nome | Destino |
+|------|------|---------|
+| CNAME | ihering.com | ihering-com.pages.dev |
+| CNAME | www.ihering.com | ihering.com |
+| CNAME | isis.ihering.com | isis-8y1.pages.dev |
+| CNAME | renascer.ihering.com | renascer-6ok.pages.dev |
+| CNAME | dieta.ihering.com | dieta-a1s.pages.dev |
+| CNAME | catolestudios.ihering.com | catolestudios.pages.dev |
+| CNAME | rotina.ihering.com | rotina-6qt.pages.dev |
 
 ## Fonte
 

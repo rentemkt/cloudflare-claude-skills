@@ -1,0 +1,7 @@
+# Redirects from subdirectory paths to subdomains
+# Uses 301 (permanent) redirects handled at Cloudflare edge
+/isis/* https://isis.ihering.com/:splat 301
+/renascer/* https://renascer.ihering.com/:splat 301
+/dieta/* https://dieta.ihering.com/:splat 301
+/catolestudios/* https://catolestudios.ihering.com/:splat 301
+/rotina/* https://rotina.ihering.com/:splat 301
