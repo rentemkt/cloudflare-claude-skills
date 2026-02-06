@@ -13,3 +13,13 @@
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+
+# JS MIME type headers
+/wp-includes/js/*.js
+  Content-Type: application/javascript
+
+/wp-content/plugins/*.js
+  Content-Type: application/javascript
+
+/wp-content/themes/*.js
+  Content-Type: application/javascript
